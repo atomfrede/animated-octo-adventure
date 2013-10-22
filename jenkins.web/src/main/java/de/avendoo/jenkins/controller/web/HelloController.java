@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/hello")
 public class HelloController {
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/hello", method = RequestMethod.GET)
 	public ModelAndView helloWorld() {
 		ModelAndView model = new ModelAndView("HelloWorldPage");
 		model.addObject("msg", "Hello Jenkins!");
