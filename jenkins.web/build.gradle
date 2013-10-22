@@ -4,6 +4,6 @@ apply plugin: 'eclipse-wtp'
 dependencies {
 	compile 'org.springframework:spring-webmvc:3.2.4.RELEASE'
 	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
-	providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.2'
+	providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
 	providedCompile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
 }
