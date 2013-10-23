@@ -7,5 +7,8 @@ import de.avendoo.jenkins.domain.Findbugs;
 public interface FindbugsService {
 
 	@GET("/job/{jobname}/lastBuild/findbugsResult/api/json")
-	Findbugs findbugsResultLastBuild(@Path("jobname") String jobName);
+	Findbugs findbugsLastBuild(@Path("jobname") String jobName);
+	
+	@GET("/job/{jobname}/{buildnumber}/findbugsResult/api/json")
+	Findbugs findbugs(@Path("jobname") String jobName, @Path("buildnumber") int buildNumber);
 }
