@@ -1,7 +1,11 @@
 package de.avendoo.jenkins.domain;
 
-public abstract class AnalysisResult {
+import java.io.Serializable;
 
+public class AnalysisResult implements Serializable {
+
+	private static final long serialVersionUID = 1827036930041300688L;
+	
 	private int numberOfFixedWarnings;
 	private int numberOfHighPriorityWarnings;
 	private int numberOfLowPriorityWarnings;
