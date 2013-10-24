@@ -1,0 +1,144 @@
+{
+  "newSuccessfulHighScore" : false,
+  "newWarnings" : [
+    
+  ],
+  "newZeroWarningsHighScore" : false,
+  "numberOfFixedWarnings" : 0,
+  "numberOfHighPriorityWarnings" : 12,
+  "numberOfLowPriorityWarnings" : 0,
+  "numberOfNewWarnings" : 0,
+  "numberOfNormalPriorityWarnings" : 27,
+  "numberOfWarnings" : 39,
+  "pluginResult" : "SUCCESS",
+  "referenceBuild" : {
+    "number" : 57,
+    "url" : "http://simpletour.de:8282/jenkins/job/cloaked-forest-development-metrics/57/"
+  },
+  "successfulHighScore" : 0,
+  "successfulSinceBuild" : 0,
+  "successfulSinceDate" : 0,
+  "warnings" : [
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ],
+  "warningsDelta" : 0,
+  "zeroWarningsHighScore" : 0,
+  "zeroWarningsSinceBuild" : 0,
+  "zeroWarningsSinceDate" : 0
+}

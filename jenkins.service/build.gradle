@@ -2,4 +2,5 @@ sourceCompatibility = 1.7
 
 dependencies {
 	compile 'com.squareup.retrofit:retrofit:1.2.2'
+	testCompile 'commons-io:commons-io:2.4'
 }
