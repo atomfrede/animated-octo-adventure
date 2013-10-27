@@ -8,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import de.avendoo.jenkins.domain.BuildJob;
+import de.avendoo.jenkins.domain.Checkstyle;
+import de.avendoo.jenkins.domain.Findbugs;
 import de.avendoo.jenkins.properties.JenkinsProperties;
 import de.avendoo.jenkins.rest.BuildJobService;
 import de.avendoo.jenkins.rest.CheckstyleService;
@@ -21,7 +23,7 @@ public class HelloController {
 	BuildJobService buildJobService;
 	TestReportService restReportService;
 	FindbugsService findbugsService;
-	CheckstyleService checkstykeService;
+	CheckstyleService checkstyleService;
 	DuplicatedCodeService dryService;
 	
 	@RequestMapping(value="/hello", method = RequestMethod.GET)
@@ -30,13 +32,32 @@ public class HelloController {
 		model.addObject("msg", "Hello Jenkins!");
 		
 		setupBuildJobService();
-		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
+		setupFindbugsService();
+		setupCheckstyleService();
 		
+		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
+		Findbugs fb = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		Checkstyle cs = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		
+		model.addObject("checkstyle", cs);
+		model.addObject("findbugs", fb);
 		model.addObject("buildjob", bj);
 		return model;
 	}
 	
 	private void setupBuildJobService() {
+		buildJobService = getRestAdapter().create(BuildJobService.class);
+	}
+	
+	private void setupFindbugsService() {
+		findbugsService = getRestAdapter().create(FindbugsService.class);
+	}
+	
+	private void setupCheckstyleService() {
+		checkstyleService = getRestAdapter().create(CheckstyleService.class);
+	}
+	
+	private RestAdapter getRestAdapter() {
 		RestAdapter.Builder builder = new RestAdapter.Builder();
 		builder.setServer(JenkinsProperties.getInstance().getApiRoot());
 		builder.setRequestInterceptor(new RequestInterceptor() {
@@ -48,7 +69,7 @@ public class HelloController {
 		});
 		
 		RestAdapter restAdapter = builder.build();
-		buildJobService = restAdapter.create(BuildJobService.class);
+		return restAdapter;
 	}
 
 }

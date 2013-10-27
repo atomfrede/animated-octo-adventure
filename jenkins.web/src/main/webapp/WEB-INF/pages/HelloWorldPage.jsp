@@ -25,9 +25,9 @@
  				 		<tr>
  				 			<th></th>
  				 			<th></th>
- 				 			<th>Now</th>
- 				 			<th>Last</th>
- 				 			<th>Delta</th>
+ 				 			<th>All</th>
+ 				 			<th>New</th>
+ 				 			<th>Fixed</th>
  				 			<th>Trend</th>
  				 		</tr>
  				 	</thead>
@@ -35,17 +35,17 @@
 						<tr class="success">
 							<td><i class="icon-check"></i></td>
 							<td>Checkstyle</td>
-							<td>100</td>
-							<td>500</td>
-							<td>-400</td>
+							<td>${checkstyle.numberOfWarnings }</td>
+							<td>${checkstyle.numberOfNewWarnings }</td>
+							<td>${checkstyle.numberOfFixedWarnings }</td>
 							<td><i class="icon-circle-arrow-down"></i></td>
 						<tr>
 						<tr class="danger">
 							<td><i class="icon-bug"></i></td>
 							<td>Findbugs</td>
-							<td>500</td>
-							<td>100</td>
-							<td>+400</td>
+							<td>${findbugs.numberOfWarnings }</td>
+							<td>${findbugs.numberOfNewWarnings }</td>
+							<td>${findbugs.numberOfFixedWarnings }</td>
 							<td><i class="icon-circle-arrow-up"></i></td>
 						<tr>
 					</tbody>
