@@ -32,8 +32,10 @@ public class MockClient implements Client {
         try {
 	        if(uri.getPath().equals(server+"/job/"+jobName+"/lastBuild/findbugsResult/api/json")) {
 	        	responseString = FileUtils.readFileToString(new File(this.getClass().getResource("findbugs.json").toURI()));
-	        } else {
-	            responseString = "OTHER JSON RESPONSE STRING";
+	        } else if(uri.getPath().equals(server+"/job/"+jobName+"/lastBuild/testReport/api/json")) {
+	            responseString = FileUtils.readFileToString(new File(this.getClass().getResource("testreport.json").toURI()));;
+	        } else if(uri.getPath().equals(server+"/job/"+jobName+"/lastBuild/api/json")) {
+	        	responseString = FileUtils.readFileToString(new File(this.getClass().getResource("buildjob.json").toURI()));;
 	        }
         }catch(URISyntaxException urie){
         	log.error("Could not read result.", urie);

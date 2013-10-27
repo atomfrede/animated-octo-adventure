@@ -1,0 +1,238 @@
+{
+  "failCount" : 0,
+  "skipCount" : 0,
+  "totalCount" : 16,
+  "urlName" : "testReport",
+  "childReports" : [
+    {
+      "child" : {
+        "number" : 61,
+        "url" : "http://simpletour.de:8282/jenkins/job/cloaked-forest-development-metrics/de.atomfrede.forest$alumni.domain/61/"
+      },
+      "result" : {
+        "duration" : 0.004,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 1,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.domain.dao.AbstractDaoTest",
+                "duration" : 0.004,
+                "failedSince" : 0,
+                "name" : "dummyTest",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.004,
+            "id" : null,
+            "name" : "de.atomfrede.forest.alumni.domain.dao.AbstractDaoTest",
+            "timestamp" : null
+          }
+        ]
+      }
+    },
+    {
+      "child" : {
+        "number" : 61,
+        "url" : "http://simpletour.de:8282/jenkins/job/cloaked-forest-development-metrics/de.atomfrede.forest$alumni.service/61/"
+      },
+      "result" : {
+        "duration" : 5.8100004,
+        "empty" : false,
+        "failCount" : 0,
+        "passCount" : 15,
+        "skipCount" : 0,
+        "suites" : [
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.company.CompanyServiceImplTest",
+                "duration" : 4.837,
+                "failedSince" : 0,
+                "name" : "create",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.company.CompanyServiceImplTest",
+                "duration" : 0.049,
+                "failedSince" : 0,
+                "name" : "createCompany",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.company.CompanyServiceImplTest",
+                "duration" : 0.057,
+                "failedSince" : 0,
+                "name" : "alreadyExisting",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.company.CompanyServiceImplTest",
+                "duration" : 0.054,
+                "failedSince" : 0,
+                "name" : "testTypeahead",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 4.9969997,
+            "id" : null,
+            "name" : "de.atomfrede.forest.alumni.service.company.CompanyServiceImplTest",
+            "timestamp" : null
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.degree.DegreeServiceImplTest",
+                "duration" : 0.01,
+                "failedSince" : 0,
+                "name" : "createDegree",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.01,
+            "id" : null,
+            "name" : "de.atomfrede.forest.alumni.service.degree.DegreeServiceImplTest",
+            "timestamp" : null
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.department.DepartmentServiceImplTest",
+                "duration" : 0.024,
+                "failedSince" : 0,
+                "name" : "newDepartment",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.024,
+            "id" : null,
+            "name" : "de.atomfrede.forest.alumni.service.department.DepartmentServiceImplTest",
+            "timestamp" : null
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.member.MemberServiceImplTest",
+                "duration" : 0.067,
+                "failedSince" : 0,
+                "name" : "assertThatFindAllFindsAllMembers",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.member.MemberServiceImplTest",
+                "duration" : 0.145,
+                "failedSince" : 0,
+                "name" : "assertThatFindAllWithDateFindsCorrectMembers",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.212,
+            "id" : null,
+            "name" : "de.atomfrede.forest.alumni.service.member.MemberServiceImplTest",
+            "timestamp" : null
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.member.profession.ProfessionServiceImplTest",
+                "duration" : 0.09,
+                "failedSince" : 0,
+                "name" : "listOfProfessions",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.09,
+            "id" : null,
+            "name" : "de.atomfrede.forest.alumni.service.member.profession.ProfessionServiceImplTest",
+            "timestamp" : null
+          },
+          {
+            "cases" : [
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.query.QueryServiceImplTest",
+                "duration" : 0.093,
+                "failedSince" : 0,
+                "name" : "queryCombination",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.query.QueryServiceImplTest",
+                "duration" : 0.063,
+                "failedSince" : 0,
+                "name" : "queryActivityTest",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.query.QueryServiceImplTest",
+                "duration" : 0.075,
+                "failedSince" : 0,
+                "name" : "querySubProperty",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.query.QueryServiceImplTest",
+                "duration" : 0.099,
+                "failedSince" : 0,
+                "name" : "queryOr",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.query.QueryServiceImplTest",
+                "duration" : 0.076,
+                "failedSince" : 0,
+                "name" : "querySimpleProperty",
+                "skipped" : false,
+                "status" : "PASSED"
+              },
+              {
+                "age" : 0,
+                "className" : "de.atomfrede.forest.alumni.service.query.QueryServiceImplTest",
+                "duration" : 0.071,
+                "failedSince" : 0,
+                "name" : "queryComplexProperty",
+                "skipped" : false,
+                "status" : "PASSED"
+              }
+            ],
+            "duration" : 0.47700003,
+            "id" : null,
+            "name" : "de.atomfrede.forest.alumni.service.query.QueryServiceImplTest",
+            "timestamp" : null
+          }
+        ]
+      }
+    }
+  ]
+}

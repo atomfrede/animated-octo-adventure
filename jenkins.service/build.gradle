@@ -2,5 +2,6 @@ sourceCompatibility = 1.7
 
 dependencies {
 	compile 'com.squareup.retrofit:retrofit:1.2.2'
+	compile 'com.google.code.gson:gson:2.2.4'
 	testCompile 'commons-io:commons-io:2.4'
 }

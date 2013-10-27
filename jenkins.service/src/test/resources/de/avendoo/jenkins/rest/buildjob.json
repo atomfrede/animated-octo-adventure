@@ -1,0 +1,123 @@
+{
+  "actions" : [
+    {
+      "causes" : [
+        {
+          "shortDescription" : "Build wurde zeitgesteuert ausgelöst."
+        }
+      ]
+    },
+    {
+      "buildsByBranchName" : {
+        "origin/development" : {
+          "buildNumber" : 61,
+          "buildResult" : null,
+          "revision" : {
+            "SHA1" : "fa8e7f6abfa9ed0925f058fb8013e6db4853455e",
+            "branch" : [
+              {
+                "SHA1" : "fa8e7f6abfa9ed0925f058fb8013e6db4853455e",
+                "name" : "origin/development"
+              }
+            ]
+          }
+        }
+      },
+      "lastBuiltRevision" : {
+        "SHA1" : "fa8e7f6abfa9ed0925f058fb8013e6db4853455e",
+        "branch" : [
+          {
+            "SHA1" : "fa8e7f6abfa9ed0925f058fb8013e6db4853455e",
+            "name" : "origin/development"
+          }
+        ]
+      },
+      "remoteUrls" : [
+        "https://github.com/atomfrede/cloaked-forest.git"
+      ],
+      "scmName" : ""
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      "failCount" : 0,
+      "skipCount" : 0,
+      "totalCount" : 16,
+      "urlName" : "testReport"
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      "participants" : [
+        
+      ],
+      "scorecard" : {
+        "scores" : [
+          {
+            "description" : "The build was successful",
+            "ruleName" : "Build result",
+            "rulesetName" : "Build result",
+            "value" : 1.0
+          }
+        ],
+        "totalPoints" : 1.0
+      }
+    },
+    {
+      
+    }
+  ],
+  "artifacts" : [
+    
+  ],
+  "building" : false,
+  "description" : null,
+  "duration" : 217105,
+  "estimatedDuration" : 205950,
+  "executor" : null,
+  "fullDisplayName" : "cloaked-forest-development-metrics #61",
+  "id" : "2013-10-27_02-46-41",
+  "keepLog" : false,
+  "number" : 61,
+  "result" : "SUCCESS",
+  "timestamp" : 1382834801869,
+  "url" : "http://simpletour.de:8282/jenkins/job/cloaked-forest-development-metrics/61/",
+  "builtOn" : "",
+  "changeSet" : {
+    "items" : [
+      
+    ],
+    "kind" : "git"
+  },
+  "culprits" : [
+    
+  ],
+  "mavenArtifacts" : null,
+  "mavenVersionUsed" : "3.0.5"
+}
