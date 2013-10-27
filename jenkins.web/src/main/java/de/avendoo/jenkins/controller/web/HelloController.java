@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import retrofit.RequestInterceptor;
+import retrofit.RestAdapter;
+import de.avendoo.jenkins.domain.BuildJob;
+import de.avendoo.jenkins.properties.JenkinsProperties;
 import de.avendoo.jenkins.rest.BuildJobService;
 import de.avendoo.jenkins.rest.CheckstyleService;
 import de.avendoo.jenkins.rest.DuplicatedCodeService;
@@ -25,7 +29,26 @@ public class HelloController {
 		ModelAndView model = new ModelAndView("HelloWorldPage");
 		model.addObject("msg", "Hello Jenkins!");
 		
+		setupBuildJobService();
+		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
+		
+		model.addObject("buildjob", bj);
 		return model;
-	}	
+	}
+	
+	private void setupBuildJobService() {
+		RestAdapter.Builder builder = new RestAdapter.Builder();
+		builder.setServer(JenkinsProperties.getInstance().getApiRoot());
+		builder.setRequestInterceptor(new RequestInterceptor() {
+			
+			@Override
+			public void intercept(RequestFacade request) {
+				request.addHeader("Authorization", "Basic "+JenkinsProperties.getInstance().getAuthHeader());
+			}
+		});
+		
+		RestAdapter restAdapter = builder.build();
+		buildJobService = restAdapter.create(BuildJobService.class);
+	}
 
 }

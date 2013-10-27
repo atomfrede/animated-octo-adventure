@@ -1,7 +1,7 @@
 allprojects {
 	apply plugin: 'java'
 	apply plugin: 'checkstyle'
-    apply plugin: 'findbugs'
+    //apply plugin: 'findbugs'
     apply plugin: 'jdepend'
     apply plugin: 'pmd'
     apply plugin: "jacoco"
@@ -16,6 +16,14 @@ allprojects {
 	
 	repositories {
 		mavenCentral();
+	}
+	
+	//findbugs {
+	//	ignoreFailures = true
+	//}
+	
+	pmd {
+		ignoreFailures = true
 	}
 }
 

@@ -8,7 +8,13 @@
 	<div class="row">
   		<div class="col-md-8">
   			<div class="panel panel-success">
-  				<div class="panel-heading"><h3><i class="icon-spinner icon-spin icon-large"></i> Job Name #42</h3></div>
+  				<div class="panel-heading"><h3>
+  					<c:if test="${buildjob.building}">
+  						<i class="icon-spinner icon-spin icon-large"></i> 
+  					</c:if>
+  					
+  					 ${buildjob.fullDisplayName }</h3>
+  				</div>
   				<div class="panel-body">
     				<h3><i class="icon-code"></i> No changes. </h3>
     				<p><i class="icon-play"></i> Build wurde zeitgesteuert gestartet. </p>
