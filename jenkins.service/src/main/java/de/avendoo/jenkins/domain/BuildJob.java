@@ -2,6 +2,8 @@ package de.avendoo.jenkins.domain;
 
 import java.io.Serializable;
 
+import com.google.gson.Gson;
+
 public class BuildJob implements Serializable {
 
 	private static final long serialVersionUID = 8870787425555539535L;
@@ -79,5 +81,10 @@ public class BuildJob implements Serializable {
 
 	public void setResult(Result result) {
 		this.result = result;
+	}
+	
+	public String toJson() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
 	}
 }

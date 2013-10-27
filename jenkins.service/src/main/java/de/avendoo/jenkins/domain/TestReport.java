@@ -2,6 +2,8 @@ package de.avendoo.jenkins.domain;
 
 import java.io.Serializable;
 
+import com.google.gson.Gson;
+
 public class TestReport implements Serializable {
 
 	private static final long serialVersionUID = -974641584792263440L;
@@ -35,6 +37,11 @@ public class TestReport implements Serializable {
 	public TestReport setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		return this;
+	}
+	
+	public String toJson() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
 	}
 
 }

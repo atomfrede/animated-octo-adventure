@@ -2,6 +2,8 @@ package de.avendoo.jenkins.domain;
 
 import java.io.Serializable;
 
+import com.google.gson.Gson;
+
 public class AnalysisResult implements Serializable {
 
 	private static final long serialVersionUID = 1827036930041300688L;
@@ -65,5 +67,10 @@ public class AnalysisResult implements Serializable {
 	
 	public int getNumberOfWarnings() {
 		return numberOfWarnings;
+	}
+	
+	public String toJson() {
+		Gson gson = new Gson();
+		return gson.toJson(this);
 	}
 }
