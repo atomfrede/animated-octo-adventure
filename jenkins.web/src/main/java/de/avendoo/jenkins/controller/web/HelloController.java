@@ -36,6 +36,7 @@ public class HelloController {
 		setupCheckstyleService();
 		
 		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
+		//TODO check if current status is building, no findbugs available yet...
 		Findbugs fb = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
 		Checkstyle cs = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
 		
