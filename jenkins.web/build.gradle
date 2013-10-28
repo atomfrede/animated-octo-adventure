@@ -15,6 +15,7 @@ eclipse {
 dependencies {
 	compile 'org.springframework:spring-webmvc:3.2.4.RELEASE'
 	compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+	compile 'javax.servlet:jstl:1.2'
 	compile 'org.webjars:bootstrap:3.0.0'
 	compile 'org.webjars:font-awesome:3.2.1'
 	compile 'org.webjars:jquery:2.0.3-1'
