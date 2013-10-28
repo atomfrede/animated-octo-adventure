@@ -10,7 +10,7 @@ public class BuildJob implements Serializable {
 
 	// TODO which are the other possible values...
 	public enum Result {
-		SUCCESS
+		SUCCESS, FAILURE, UNSTABLE
 	}
 
 	private boolean building;
