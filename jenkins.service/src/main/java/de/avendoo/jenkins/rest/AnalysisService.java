@@ -7,9 +7,9 @@ import de.avendoo.jenkins.domain.AnalysisResult;
 public interface AnalysisService {
 
 	@GET("/job/{jobname}/lastBuild/analysisResult/api/json")
-	AnalysisResult findbugsLastBuild(@Path("jobname") String jobName);
+	AnalysisResult analysisLastBuild(@Path("jobname") String jobName);
 	
 	@GET("/job/{jobname}/{buildnumber}/analysisResult/api/json")
-	AnalysisResult findbugs(@Path("jobname") String jobName, @Path("buildnumber") int buildNumber);
+	AnalysisResult analysis(@Path("jobname") String jobName, @Path("buildnumber") int buildNumber);
 	
 }

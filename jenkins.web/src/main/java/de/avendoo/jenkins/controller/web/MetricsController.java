@@ -7,58 +7,88 @@ import org.springframework.web.servlet.ModelAndView;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import de.avendoo.jenkins.domain.AnalysisResult;
 import de.avendoo.jenkins.domain.BuildJob;
 import de.avendoo.jenkins.domain.Checkstyle;
 import de.avendoo.jenkins.domain.Findbugs;
 import de.avendoo.jenkins.properties.JenkinsProperties;
+import de.avendoo.jenkins.rest.AnalysisService;
 import de.avendoo.jenkins.rest.BuildJobService;
 import de.avendoo.jenkins.rest.CheckstyleService;
 import de.avendoo.jenkins.rest.DuplicatedCodeService;
 import de.avendoo.jenkins.rest.FindbugsService;
 import de.avendoo.jenkins.rest.TestReportService;
+import de.avendoo.jenkins.view.AnalysisResultSummaryView;
+import de.avendoo.jenkins.view.FindbugsSummaryView;
 
 @Controller
-public class HelloController {
+public class MetricsController {
 	
 	BuildJobService buildJobService;
 	TestReportService restReportService;
 	FindbugsService findbugsService;
 	CheckstyleService checkstyleService;
 	DuplicatedCodeService dryService;
+	AnalysisService analysisService;
 	
-	@RequestMapping(value="/hello", method = RequestMethod.GET)
+	@RequestMapping(value="/metrics", method = RequestMethod.GET)
 	public ModelAndView helloWorld() {
-		ModelAndView model = new ModelAndView("HelloWorldPage");
-		model.addObject("msg", "Hello Jenkins!");
+		ModelAndView modelAndView = new ModelAndView("MetricsPage");
 		
 		setupBuildJobService();
 		setupFindbugsService();
 		setupCheckstyleService();
+		setupAnalysisService();
 		
 		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
 		
 		Findbugs fb = null;
+		Findbugs oldFb = null;
 		Checkstyle cs = null;
+		AnalysisResult ar = null;
+		AnalysisResult oldAr = null;
 		if(bj.isBuilding()) {
 			//If the current job is building we don't have analysis results for the current build so use the results from before
 			//If this is the first build use empty objects
 			if(bj.getNumber() > 1) {
+				ar = analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
 				fb = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
 				cs = checkstyleService.checkstyle(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
+				if(bj.getNumber() > 2) {
+					oldAr = analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 2);
+					oldFb = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 2);
+				} else {
+					oldAr = new AnalysisResult();
+					oldFb = new Findbugs();
+				}
+				
 			} else {
+				ar = new AnalysisResult();
+				oldAr = new AnalysisResult();
 				fb = new Findbugs();
+				oldFb = new Findbugs();
 				cs = new Checkstyle();
 			}
 		} else {
+			ar = analysisService.analysisLastBuild(JenkinsProperties.getInstance().getMetricsJob());
 			fb = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
 			cs = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+			if(bj.getNumber() > 1) {
+				oldAr = analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
+				oldFb = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
+			} else {
+				oldAr = new AnalysisResult();
+				oldFb = new Findbugs();
+			}
+			
+			
 		}
 		
-		
-		model.addObject("checkstyle", cs);
-		model.addObject("findbugs", fb);
-		model.addObject("buildjob", bj);
-		return model;
+		modelAndView.addObject("analysisSummaryView", new AnalysisResultSummaryView().addAnalysisResult(ar).addLastBuildAnalysisResult(oldAr));
+		modelAndView.addObject("checkstyle", cs);
+		modelAndView.addObject("findbugsSummaryView", new FindbugsSummaryView().addAnalysisResult(fb).addLastBuildAnalysisResult(oldFb));
+		modelAndView.addObject("buildjob", bj);
+		return modelAndView;
 	}
 	
 	private void setupBuildJobService() {
@@ -71,6 +101,10 @@ public class HelloController {
 	
 	private void setupCheckstyleService() {
 		checkstyleService = getRestAdapter().create(CheckstyleService.class);
+	}
+	
+	private void setupAnalysisService() {
+		analysisService = getRestAdapter().create(AnalysisService.class);
 	}
 	
 	private RestAdapter getRestAdapter() {
