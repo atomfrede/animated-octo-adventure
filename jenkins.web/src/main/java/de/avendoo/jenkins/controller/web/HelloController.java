@@ -36,9 +36,24 @@ public class HelloController {
 		setupCheckstyleService();
 		
 		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
-		//TODO check if current status is building, no findbugs available yet...
-		Findbugs fb = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
-		Checkstyle cs = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		
+		Findbugs fb = null;
+		Checkstyle cs = null;
+		if(bj.isBuilding()) {
+			//If the current job is building we don't have analysis results for the current build so use the results from before
+			//If this is the first build use empty objects
+			if(bj.getNumber() > 1) {
+				fb = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
+				cs = checkstyleService.checkstyle(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
+			} else {
+				fb = new Findbugs();
+				cs = new Checkstyle();
+			}
+		} else {
+			fb = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+			cs = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		}
+		
 		
 		model.addObject("checkstyle", cs);
 		model.addObject("findbugs", fb);
