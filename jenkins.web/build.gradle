@@ -18,10 +18,12 @@ dependencies {
 	compile 'javax.servlet:jstl:1.2'
 	compile 'org.webjars:bootstrap:3.0.0'
 	compile 'org.webjars:font-awesome:3.2.1'
+	compile 'org.webjars:font-mfizz:1.2'
 	compile 'org.webjars:jquery:2.0.3-1'
 	compile 'commons-codec:commons-codec:1.8'
 	compile 'commons-configuration:commons-configuration:1.8'
 	compile 'com.squareup.retrofit:retrofit:1.2.2'
+	compile 'com.squareup.okhttp:okhttp:1.2.1'
 	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 	providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
 }

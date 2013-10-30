@@ -1,5 +1,7 @@
 package de.avendoo.jenkins.controller.web;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -7,6 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import retrofit.client.OkClient;
+
+import com.squareup.okhttp.OkHttpClient;
+
 import de.avendoo.jenkins.domain.AnalysisResult;
 import de.avendoo.jenkins.domain.BuildJob;
 import de.avendoo.jenkins.domain.Checkstyle;
@@ -108,7 +114,11 @@ public class MetricsController {
 	}
 	
 	private RestAdapter getRestAdapter() {
+		OkHttpClient client = new OkHttpClient();
+		client.setReadTimeout(5, TimeUnit.MINUTES);
+		 
 		RestAdapter.Builder builder = new RestAdapter.Builder();
+		builder.setClient(new OkClient(client));
 		builder.setServer(JenkinsProperties.getInstance().getApiRoot());
 		builder.setRequestInterceptor(new RequestInterceptor() {
 			
@@ -121,5 +131,7 @@ public class MetricsController {
 		RestAdapter restAdapter = builder.build();
 		return restAdapter;
 	}
+	
+
 
 }
