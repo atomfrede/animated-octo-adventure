@@ -11,7 +11,7 @@
   			<div class="panel panel-success">
   				<div class="panel-heading"><h3>
   					<c:if test="${buildjob.building}">
-  						<i class="icon-spinner icon-spin icon-large"></i> 
+  						<i class="fa fa-spinner fa-spin fa-lg"></i> 
   					</c:if>
   					
   					 ${buildjob.fullDisplayName }</h3>
