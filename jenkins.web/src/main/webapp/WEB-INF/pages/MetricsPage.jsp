@@ -17,9 +17,9 @@
   					 ${buildjob.fullDisplayName }</h3>
   				</div>
   				<div class="panel-body">
-    				<h3><i class="icon-code"></i> No changes. </h3>
-    				<p><i class="icon-play"></i> Build wurde zeitgesteuert gestartet. </p>
-    				<p><i class="icon-time"></i> Dauer: 25 Minuten. </p>
+    				<h3><i class="fa fa-code"></i> No changes. </h3>
+    				<p><i class="fa fa-play"></i> Build wurde zeitgesteuert gestartet. </p>
+    				<p><i class="fa fa-time"></i> Dauer: 25 Minuten. </p>
  				 </div>
  				 <table class="table table-striped">
  				 	<thead>
@@ -55,7 +55,7 @@
   			
   			<div class="panel panel-danger">
   				<div class="panel-heading">
-  					<h3><i class="icon-bug icon-large"></i> Findbugs</h3>
+  					<h3><i class="fa fa-bug fa-lg"></i> Findbugs</h3>
   				</div>
   					 <table class="table table-striped">
  				 	<thead>
