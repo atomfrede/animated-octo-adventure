@@ -42,6 +42,9 @@ subprojects {
 	}
 }
 
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.9'
+}
 project(':jenkins.web') {
 	dependencies {
 		compile project(':jenkins.service')
