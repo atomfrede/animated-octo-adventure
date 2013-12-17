@@ -2,6 +2,7 @@ package de.avendoo.jenkins.view;
 
 import de.avendoo.jenkins.domain.AnalysisResult;
 import de.avendoo.jenkins.domain.Checkstyle;
+import de.avendoo.jenkins.domain.DuplicatedCode;
 import de.avendoo.jenkins.domain.Findbugs;
 
 public class MetricsBuild {
@@ -12,6 +13,8 @@ public class MetricsBuild {
 	
 	private Checkstyle currentCheckstyleResult, lastCheckstyleResult;
 	
+	private DuplicatedCode currentDry, lastDry;
+	
 	public void initWithEmptyResults() {
 		currentAnalysisResult = new AnalysisResult();
 		lastAnalysisResult = new AnalysisResult();
@@ -21,6 +24,9 @@ public class MetricsBuild {
 		
 		currentCheckstyleResult = new Checkstyle();
 		lastCheckstyleResult = new Checkstyle();
+		
+		currentDry = new DuplicatedCode();
+		lastDry = new DuplicatedCode();
 	}
 	
 	public AnalysisResult getCurrentAnalysisResult() {
@@ -69,5 +75,21 @@ public class MetricsBuild {
 	
 	public void setLastCheckstyleResult(Checkstyle lastCheckstyleResult) {
 		this.lastCheckstyleResult = lastCheckstyleResult;
+	}
+
+	public DuplicatedCode getCurrentDry() {
+		return currentDry;
+	}
+
+	public void setCurrentDry(DuplicatedCode currentDry) {
+		this.currentDry = currentDry;
+	}
+
+	public DuplicatedCode getLastDry() {
+		return lastDry;
+	}
+
+	public void setLastDry(DuplicatedCode lastDry) {
+		this.lastDry = lastDry;
 	}
 }

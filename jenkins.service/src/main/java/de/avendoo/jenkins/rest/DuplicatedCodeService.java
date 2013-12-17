@@ -7,8 +7,8 @@ import de.avendoo.jenkins.domain.DuplicatedCode;
 public interface DuplicatedCodeService {
 
 	@GET("/job/{jobname}/lastBuild/dryResult/api/json")
-	DuplicatedCode findbugsLastBuild(@Path("jobname") String jobName);
+	DuplicatedCode dryLastBuild(@Path("jobname") String jobName);
 	
 	@GET("/job/{jobname}/{buildnumber}/dryResult/api/json")
-	DuplicatedCode findbugs(@Path("jobname") String jobName, @Path("buildnumber") int buildNumber);
+	DuplicatedCode dry(@Path("jobname") String jobName, @Path("buildnumber") int buildNumber);
 }

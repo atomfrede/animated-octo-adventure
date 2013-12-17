@@ -16,6 +16,7 @@ import com.squareup.okhttp.OkHttpClient;
 import de.avendoo.jenkins.domain.AnalysisResult;
 import de.avendoo.jenkins.domain.BuildJob;
 import de.avendoo.jenkins.domain.Checkstyle;
+import de.avendoo.jenkins.domain.DuplicatedCode;
 import de.avendoo.jenkins.domain.Findbugs;
 import de.avendoo.jenkins.properties.JenkinsProperties;
 import de.avendoo.jenkins.rest.AnalysisService;
@@ -26,6 +27,7 @@ import de.avendoo.jenkins.rest.FindbugsService;
 import de.avendoo.jenkins.rest.TestReportService;
 import de.avendoo.jenkins.view.AnalysisResultSummaryView;
 import de.avendoo.jenkins.view.CheckstyleResultSummaryView;
+import de.avendoo.jenkins.view.DrySummaryView;
 import de.avendoo.jenkins.view.FindbugsSummaryView;
 import de.avendoo.jenkins.view.MetricsBuild;
 
@@ -42,10 +44,12 @@ public class MetricsController {
 	private AnalysisResult currentAnalysisResult;
 	private Findbugs currentFindbugsResult;
 	private Checkstyle currentCheckstyleResult;
+	private DuplicatedCode currentDryResult;
 	
 	private AnalysisResult lastAnalysisResult;
 	private Findbugs lastFindbugsResult;
 	private Checkstyle lastCheckstyleResult;
+	private DuplicatedCode lastDryResult;
 	
 	@RequestMapping(value="/metrics", method = RequestMethod.GET)
 	public ModelAndView defaultMetricsPage() {
@@ -60,6 +64,7 @@ public class MetricsController {
 		modelAndView.addObject("analysisSummaryView", new AnalysisResultSummaryView().addAnalysisResult(metricsBuild.getCurrentAnalysisResult()).addLastBuildAnalysisResult(metricsBuild.getLastAnalysisResult()));
 		modelAndView.addObject("checkstyleSummaryView", new CheckstyleResultSummaryView().addAnalysisResult(metricsBuild.getCurrentCheckstyleResult()).addLastBuildAnalysisResult(metricsBuild.getLastCheckstyleResult()));
 		modelAndView.addObject("findbugsSummaryView", new FindbugsSummaryView().addAnalysisResult(metricsBuild.getCurrentFindbugsResult()).addLastBuildAnalysisResult(metricsBuild.getLastFindbugsResult()));
+		modelAndView.addObject("drySummaryView", new DrySummaryView().addAnalysisResult(metricsBuild.getCurrentDry()).addLastBuildAnalysisResult(metricsBuild.getLastDry()));
 		modelAndView.addObject("buildjob", bj);
 		return modelAndView;
 	}
@@ -69,6 +74,7 @@ public class MetricsController {
 		setupFindbugsService();
 		setupCheckstyleService();
 		setupAnalysisService();
+		setupDulicatedCodeService();
 	}
 	
 	private MetricsBuild getMetricsBuildResult(final BuildJob job) {
@@ -89,11 +95,11 @@ public class MetricsController {
 		lastFindbugsResult = new Findbugs();
 		
 		if(job.getNumber() > 1) {
-			currentFindbugsResult = getFindbugs(job.getNumber() - 1);
+			currentFindbugsResult = getFindbugsResult(job.getNumber() - 1);
 		}
 		
 		if(job.getNumber() > 2) {
-			lastFindbugsResult = getFindbugs(job.getNumber() - 2);
+			lastFindbugsResult = getFindbugsResult(job.getNumber() - 2);
 		}
 	}
 	
@@ -102,11 +108,11 @@ public class MetricsController {
 		lastCheckstyleResult = new Checkstyle();
 		
 		if(job.getNumber() > 1) {
-			currentCheckstyleResult = getCheckstyle(job.getNumber() - 1);
+			currentCheckstyleResult = getCheckstyleResult(job.getNumber() - 1);
 		}
 		
 		if(job.getNumber() > 2) {
-			lastCheckstyleResult = getCheckstyle(job.getNumber() - 2);
+			lastCheckstyleResult = getCheckstyleResult(job.getNumber() - 2);
 		}
 	}
 	
@@ -123,10 +129,24 @@ public class MetricsController {
 		}
 	}
 	
+	private void getDryResultForRunningBuildJob(final BuildJob job) {
+		currentDryResult = new DuplicatedCode();
+		lastDryResult = new DuplicatedCode();
+		
+		if(job.getNumber() > 1) {
+			currentDryResult = getDryResult(job.getNumber() - 1);
+		}
+		
+		if(job.getNumber() > 2) {
+			lastDryResult = getDryResult(job.getNumber() - 2);
+		}
+	}
+	
 	private void getMetricsResultForRunningBuildJob(final BuildJob job) {
 		getFindbugsResultForRunningBuildJob(job);
 		getCheckstyleResultForRunnungBuildJob(job);
 		getAnalysisResultForRunningBuildJob(job);
+		getDryResultForRunningBuildJob(job);
 	}
 	
 	private MetricsBuild getResultForRunningBuildJob(final BuildJob job) {
@@ -136,10 +156,12 @@ public class MetricsController {
 		metricsBuild.setCurrentAnalysisResult(currentAnalysisResult);
 		metricsBuild.setCurrentCheckstyleResult(currentCheckstyleResult);
 		metricsBuild.setCurrentFindbugsResult(currentFindbugsResult);
+		metricsBuild.setCurrentDry(currentDryResult);
 		
 		metricsBuild.setLastAnalysisResult(lastAnalysisResult);
 		metricsBuild.setLastCheckstyleResult(lastCheckstyleResult);
 		metricsBuild.setLastFindbugsResult(lastFindbugsResult);
+		metricsBuild.setLastDry(lastDryResult);
 		
 		return metricsBuild;
 	}
@@ -158,7 +180,7 @@ public class MetricsController {
 		
 		lastFindbugsResult = new Findbugs();
 		if(job.getNumber() > 1) {
-			lastFindbugsResult = getFindbugs(job.getNumber() - 1);
+			lastFindbugsResult = getFindbugsResult(job.getNumber() - 1);
 		}
 	}
 	
@@ -167,7 +189,16 @@ public class MetricsController {
 		
 		lastCheckstyleResult = new Checkstyle();
 		if(job.getNumber() > 1) {
-			lastCheckstyleResult = getCheckstyle(job.getNumber());
+			lastCheckstyleResult = getCheckstyleResult(job.getNumber());
+		}
+	}
+	
+	private void getDryResultForFinishedBuildJob(BuildJob job) {
+		currentDryResult = dryService.dryLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		
+		lastDryResult = new DuplicatedCode();
+		if(job.getNumber() > 1) {
+			lastDryResult = getDryResult(job.getNumber());
 		}
 	}
 	
@@ -175,6 +206,7 @@ public class MetricsController {
 		getAnalysisResultForFinishedBuildJob(job);
 		getFindbugsResultForFinishedBuildJob(job);
 		getCheckstyleResultForFinishedBuildJob(job);
+		getDryResultForFinishedBuildJob(job);
 	}
 	
 	private MetricsBuild getResultForFinishedBuildJob(final BuildJob job) {
@@ -184,25 +216,31 @@ public class MetricsController {
 		metricsBuild.setCurrentAnalysisResult(currentAnalysisResult);
 		metricsBuild.setCurrentCheckstyleResult(currentCheckstyleResult);
 		metricsBuild.setCurrentFindbugsResult(currentFindbugsResult);
+		metricsBuild.setCurrentDry(currentDryResult);
 		
 		metricsBuild.setLastAnalysisResult(lastAnalysisResult);
 		metricsBuild.setLastCheckstyleResult(lastCheckstyleResult);
 		metricsBuild.setLastFindbugsResult(lastFindbugsResult);
+		metricsBuild.setLastDry(lastDryResult);
 		
 		return metricsBuild;
 	}
 	
 	
-	private Findbugs getFindbugs(final int buildNumber) {
+	private Findbugs getFindbugsResult(final int buildNumber) {
 		return findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), buildNumber);
 	}
 	
-	private Checkstyle getCheckstyle(final int buildNumber) {
+	private Checkstyle getCheckstyleResult(final int buildNumber) {
 		return checkstyleService.checkstyle(JenkinsProperties.getInstance().getMetricsJob(), buildNumber);
 	}
 	
 	private AnalysisResult getAnalysisResult(final int buildNumber) {
 		return analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), buildNumber);
+	}
+	
+	private DuplicatedCode getDryResult(final int buildNumber) {
+		return dryService.dry(JenkinsProperties.getInstance().getMetricsJob(), buildNumber);
 	}
 	
 	private void setupBuildJobService() {
@@ -219,6 +257,10 @@ public class MetricsController {
 	
 	private void setupAnalysisService() {
 		analysisService = getRestAdapter().create(AnalysisService.class);
+	}
+	
+	private void setupDulicatedCodeService() {
+		dryService = getRestAdapter().create(DuplicatedCodeService.class);
 	}
 	
 	private RestAdapter getRestAdapter() {
