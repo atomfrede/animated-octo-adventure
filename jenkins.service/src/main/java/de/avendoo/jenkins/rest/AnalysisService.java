@@ -11,5 +11,7 @@ public interface AnalysisService {
 	
 	@GET("/job/{jobname}/{buildnumber}/analysisResult/api/json")
 	AnalysisResult analysis(@Path("jobname") String jobName, @Path("buildnumber") int buildNumber);
+
+
 	
 }

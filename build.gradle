@@ -31,6 +31,7 @@ subprojects {
 
 	dependencies {
 		compile 'org.springframework:spring-core:3.2.5.RELEASE'
+		compile 'joda-time:joda-time:2.3'
 		
 		testCompile ('junit:junit:4.11'){
 			exclude module : 'org.hamcrest:hamcrest-core'
@@ -43,7 +44,7 @@ subprojects {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '1.9'
+	gradleVersion = '1.10'
 }
 project(':jenkins.web') {
 	dependencies {

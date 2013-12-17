@@ -3,7 +3,6 @@ package de.avendoo.jenkins.rest;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import de.avendoo.jenkins.domain.DuplicatedCode;
-import de.avendoo.jenkins.domain.Findbugs;
 
 public interface DuplicatedCodeService {
 

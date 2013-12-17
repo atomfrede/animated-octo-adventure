@@ -9,17 +9,15 @@
 	<div class="row">
   		<div class="col-md-8">
   			<div class="panel panel-success">
-  				<div class="panel-heading"><h3>
-  					<c:if test="${buildjob.building}">
-  						<i class="fa fa-spinner fa-spin fa-lg"></i> 
-  					</c:if>
-  					
+  				<div class="panel-heading">
+  					<h3>
+  						<c:if test="${buildjob.building}">
+  							<i class="fa fa-spinner fa-spin fa-lg"></i> 
+  						</c:if>
   					 ${buildjob.fullDisplayName }</h3>
   				</div>
   				<div class="panel-body">
-    				<h3><i class="fa fa-code"></i> No changes. </h3>
-    				<p><i class="fa fa-play"></i> Build wurde zeitgesteuert gestartet. </p>
-    				<p><i class="fa fa-time"></i> Dauer: 25 Minuten. </p>
+    				<p><i class="fa fa-time"></i> Dauer: ${buildjob.durationText} </p>
  				 </div>
  				 <table class="table table-striped">
  				 	<thead>
@@ -35,19 +33,49 @@
 							<td>High Priority</td>
 							<td>${analysisSummaryView.numberOfHighPriorityWarnings }</td>
 							<td>${analysisSummaryView.diffHighPriorityWarnings }</td>
-							<td></td>
+							<td>
+								<c:if test="${analysisSummaryView.diffHighPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${analysisSummaryView.diffHighPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${analysisSummaryView.diffHighPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
 						</tr>
 						<tr>
 							<td>Normal Priority</td>
 							<td>${analysisSummaryView.numberOfNormalPriorityWarnings }</td>
 							<td>${analysisSummaryView.diffNormalPriorityWarnings }</td>
-							<td></td>
+							<td>
+								<c:if test="${analysisSummaryView.diffNormalPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${analysisSummaryView.diffNormalPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${analysisSummaryView.diffNormalPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
 						</tr>
 						<tr>
 							<td>Low Priority</td>
 							<td>${analysisSummaryView.numberOfLowPriorityWarnings }</td>
 							<td>${analysisSummaryView.diffLowPriorityWarnings }</td>
-							<td></td>
+							<td>
+								<c:if test="${analysisSummaryView.diffLowPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${analysisSummaryView.diffLowPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${analysisSummaryView.diffLowPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
 						</tr>
 					</tbody>
   				</table>
@@ -57,7 +85,7 @@
   				<div class="panel-heading">
   					<h3><i class="fa fa-bug fa-lg"></i> Findbugs</h3>
   				</div>
-  					 <table class="table table-striped">
+  				 <table class="table table-striped">
  				 	<thead>
  				 		<tr>
  				 			<th></th>
@@ -71,25 +99,55 @@
 							<td>High Priority</td>
 							<td>${findbugsSummaryView.numberOfHighPriorityWarnings }</td>
 							<td>${findbugsSummaryView.diffHighPriorityWarnings }</td>
-							<td></td>
+							<td>
+								<c:if test="${findbugsSummaryView.diffHighPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${findbugsSummaryView.diffHighPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${findbugsSummaryView.diffHighPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
 						</tr>
 						<tr>
 							<td>Normal Priority</td>
 							<td>${findbugsSummaryView.numberOfNormalPriorityWarnings }</td>
 							<td>${findbugsSummaryView.diffNormalPriorityWarnings }</td>
-							<td></td>
+							<td>
+								<c:if test="${findbugsSummaryView.diffNormalPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${findbugsSummaryView.diffNormalPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${findbugsSummaryView.diffNormalPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
 						</tr>
 						<tr>
 							<td>Low Priority</td>
 							<td>${findbugsSummaryView.numberOfLowPriorityWarnings }</td>
 							<td>${findbugsSummaryView.diffLowPriorityWarnings }</td>
-							<td></td>
+							<td>
+								<c:if test="${findbugsSummaryView.diffLowPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${findbugsSummaryView.diffLowPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${findbugsSummaryView.diffLowPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
 						</tr>
 					</tbody>
   				</table>
   			</div>
   			
-  		<div id="carousel-example-generic" class="carousel slide bs-docs-carousel-example">
+  		<div id="carousel-example-generic" class="carousel slide bs-docs-carousel-example" data-interval="1">
         <ol class="carousel-indicators">
           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
           <li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -97,7 +155,71 @@
         </ol>
         <div class="carousel-inner">
           <div class="item active">
-            <img src="http://lorempixel.com/400/200/" data-src="holder.js/900x500/auto/#777:#555/text:First slide" alt="First slide">
+           	<div class="panel panel-info">
+  				<div class="panel-heading">
+  					<h3><i class="fa fa-check-square-o fa-lg"></i> Checkstyle</h3>
+  				</div>
+  				 <table class="table table-striped">
+ 				 	<thead>
+ 				 		<tr>
+ 				 			<th></th>
+ 				 			<th>Current</th>
+ 				 			<th>Difference</th>
+ 				 			<th>Trend</th>
+ 				 		</tr>
+ 				 	</thead>
+ 				 	<tbody>
+						<tr>
+							<td>High Priority</td>
+							<td>${checkstyleSummaryView.numberOfHighPriorityWarnings }</td>
+							<td>${checkstyleSummaryView.diffHighPriorityWarnings }</td>
+							<td>
+								<c:if test="${checkstyleSummaryView.diffHighPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${checkstyleSummaryView.diffHighPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${checkstyleSummaryView.diffHighPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
+						</tr>
+						<tr>
+							<td>Normal Priority</td>
+							<td>${checkstyleSummaryView.numberOfNormalPriorityWarnings }</td>
+							<td>${checkstyleSummaryView.diffNormalPriorityWarnings }</td>
+							<td>
+								<c:if test="${checkstyleSummaryView.diffNormalPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${checkstyleSummaryView.diffNormalPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${checkstyleSummaryView.diffNormalPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
+						</tr>
+						<tr>
+							<td>Low Priority</td>
+							<td>${checkstyleSummaryView.numberOfLowPriorityWarnings }</td>
+							<td>${checkstyleSummaryView.diffLowPriorityWarnings }</td>
+							<td>
+								<c:if test="${checkstyleSummaryView.diffLowPriorityWarnings == 0}">
+									<i class="fa fa-dot-circle-o"></i>
+								</c:if>
+								<c:if test="${checkstyleSummaryView.diffLowPriorityWarnings > 0}">
+									<i class="fa fa-level-up"></i>
+								</c:if>
+								<c:if test="${checkstyleSummaryView.diffLowPriorityWarnings < 0}">
+									<i class="fa fa-level-down"></i>
+								</c:if>
+							</td>
+						</tr>
+					</tbody>
+  				</table>
+  			</div>
           </div>
           <div class="item">
             <img src="http://lorempixel.com/400/200/" data-src="holder.js/900x500/auto/#666:#444/text:Second slide" alt="Second slide">

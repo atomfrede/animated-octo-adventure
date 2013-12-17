@@ -1,6 +1,11 @@
 package de.avendoo.jenkins.domain;
 
 import java.io.Serializable;
+import java.util.Locale;
+
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import com.google.gson.Gson;
 
@@ -8,13 +13,13 @@ public class BuildJob implements Serializable {
 
 	private static final long serialVersionUID = 8870787425555539535L;
 
-	// TODO which are the other possible values...
 	public enum Result {
 		SUCCESS, FAILURE, UNSTABLE
 	}
 
 	private boolean building;
 	private long duration;
+	private String durationText;
 	private long estimatedDuration;
 	private String fullDisplayName;
 	private int number;
@@ -81,6 +86,12 @@ public class BuildJob implements Serializable {
 
 	public void setResult(Result result) {
 		this.result = result;
+	}
+	
+	public String getDurationText() {
+		Period period = new Period(getDuration());
+		String durationText = new PeriodFormatterBuilder().appendHours().appendMinutes().appendSuffix(" Minute", " Minute") .appendSeparator(" und ").appendSeconds() .appendSuffix(" Sekunde", " Sekunden").toFormatter().print(period);
+		return durationText;
 	}
 	
 	public String toJson() {

@@ -25,76 +25,184 @@ import de.avendoo.jenkins.rest.DuplicatedCodeService;
 import de.avendoo.jenkins.rest.FindbugsService;
 import de.avendoo.jenkins.rest.TestReportService;
 import de.avendoo.jenkins.view.AnalysisResultSummaryView;
+import de.avendoo.jenkins.view.CheckstyleResultSummaryView;
 import de.avendoo.jenkins.view.FindbugsSummaryView;
+import de.avendoo.jenkins.view.MetricsBuild;
 
 @Controller
 public class MetricsController {
 	
-	BuildJobService buildJobService;
-	TestReportService restReportService;
-	FindbugsService findbugsService;
-	CheckstyleService checkstyleService;
-	DuplicatedCodeService dryService;
-	AnalysisService analysisService;
+	private BuildJobService buildJobService;
+	private TestReportService testReportService;
+	private FindbugsService findbugsService;
+	private CheckstyleService checkstyleService;
+	private DuplicatedCodeService dryService;
+	private AnalysisService analysisService;
+	
+	private AnalysisResult currentAnalysisResult;
+	private Findbugs currentFindbugsResult;
+	private Checkstyle currentCheckstyleResult;
+	
+	private AnalysisResult lastAnalysisResult;
+	private Findbugs lastFindbugsResult;
+	private Checkstyle lastCheckstyleResult;
 	
 	@RequestMapping(value="/metrics", method = RequestMethod.GET)
-	public ModelAndView helloWorld() {
+	public ModelAndView defaultMetricsPage() {
 		ModelAndView modelAndView = new ModelAndView("MetricsPage");
 		
+		setupServices();
+		
+		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
+		
+		MetricsBuild metricsBuild = getMetricsBuildResult(bj);
+		
+		modelAndView.addObject("analysisSummaryView", new AnalysisResultSummaryView().addAnalysisResult(metricsBuild.getCurrentAnalysisResult()).addLastBuildAnalysisResult(metricsBuild.getLastAnalysisResult()));
+		modelAndView.addObject("checkstyleSummaryView", new CheckstyleResultSummaryView().addAnalysisResult(metricsBuild.getCurrentCheckstyleResult()).addLastBuildAnalysisResult(metricsBuild.getLastCheckstyleResult()));
+		modelAndView.addObject("findbugsSummaryView", new FindbugsSummaryView().addAnalysisResult(metricsBuild.getCurrentFindbugsResult()).addLastBuildAnalysisResult(metricsBuild.getLastFindbugsResult()));
+		modelAndView.addObject("buildjob", bj);
+		return modelAndView;
+	}
+	
+	private void setupServices() {
 		setupBuildJobService();
 		setupFindbugsService();
 		setupCheckstyleService();
 		setupAnalysisService();
+	}
+	
+	private MetricsBuild getMetricsBuildResult(final BuildJob job) {
+		MetricsBuild metricsBuild = new MetricsBuild();
+		metricsBuild.initWithEmptyResults();
 		
-		BuildJob bj = buildJobService.lastBuildJob(JenkinsProperties.getInstance().getMetricsJob());
-		
-		Findbugs fb = null;
-		Findbugs oldFb = null;
-		Checkstyle cs = null;
-		AnalysisResult ar = null;
-		AnalysisResult oldAr = null;
-		if(bj.isBuilding()) {
-			//If the current job is building we don't have analysis results for the current build so use the results from before
-			//If this is the first build use empty objects
-			if(bj.getNumber() > 1) {
-				ar = analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
-				fb = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
-				cs = checkstyleService.checkstyle(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
-				if(bj.getNumber() > 2) {
-					oldAr = analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 2);
-					oldFb = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 2);
-				} else {
-					oldAr = new AnalysisResult();
-					oldFb = new Findbugs();
-				}
-				
-			} else {
-				ar = new AnalysisResult();
-				oldAr = new AnalysisResult();
-				fb = new Findbugs();
-				oldFb = new Findbugs();
-				cs = new Checkstyle();
-			}
+		if(job.isBuilding()) {
+			getMetricsResultForRunningBuildJob(job);
+			return getResultForRunningBuildJob(job);
 		} else {
-			ar = analysisService.analysisLastBuild(JenkinsProperties.getInstance().getMetricsJob());
-			fb = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
-			cs = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
-			if(bj.getNumber() > 1) {
-				oldAr = analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
-				oldFb = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), bj.getNumber() - 1);
-			} else {
-				oldAr = new AnalysisResult();
-				oldFb = new Findbugs();
-			}
-			
-			
+			getMetricsResultsForFinishedBuildJob(job);
+			return getResultForFinishedBuildJob(job);
+		}
+	}
+	
+	private void getFindbugsResultForRunningBuildJob(final BuildJob job) {
+		currentFindbugsResult = new Findbugs();
+		lastFindbugsResult = new Findbugs();
+		
+		if(job.getNumber() > 1) {
+			currentFindbugsResult = getFindbugs(job.getNumber() - 1);
 		}
 		
-		modelAndView.addObject("analysisSummaryView", new AnalysisResultSummaryView().addAnalysisResult(ar).addLastBuildAnalysisResult(oldAr));
-		modelAndView.addObject("checkstyle", cs);
-		modelAndView.addObject("findbugsSummaryView", new FindbugsSummaryView().addAnalysisResult(fb).addLastBuildAnalysisResult(oldFb));
-		modelAndView.addObject("buildjob", bj);
-		return modelAndView;
+		if(job.getNumber() > 2) {
+			lastFindbugsResult = getFindbugs(job.getNumber() - 2);
+		}
+	}
+	
+	private void getCheckstyleResultForRunnungBuildJob(final BuildJob job) {
+		currentCheckstyleResult = new Checkstyle();
+		lastCheckstyleResult = new Checkstyle();
+		
+		if(job.getNumber() > 1) {
+			currentCheckstyleResult = getCheckstyle(job.getNumber() - 1);
+		}
+		
+		if(job.getNumber() > 2) {
+			lastCheckstyleResult = getCheckstyle(job.getNumber() - 2);
+		}
+	}
+	
+	private void getAnalysisResultForRunningBuildJob(final BuildJob job) {
+		currentAnalysisResult = new AnalysisResult();
+		lastAnalysisResult = new AnalysisResult();
+		
+		if(job.getNumber() > 1) {
+			currentAnalysisResult = getAnalysisResult(job.getNumber() - 1);
+		}
+		
+		if(job.getNumber() > 2) {
+			lastAnalysisResult = getAnalysisResult(job.getNumber() - 2);
+		}
+	}
+	
+	private void getMetricsResultForRunningBuildJob(final BuildJob job) {
+		getFindbugsResultForRunningBuildJob(job);
+		getCheckstyleResultForRunnungBuildJob(job);
+		getAnalysisResultForRunningBuildJob(job);
+	}
+	
+	private MetricsBuild getResultForRunningBuildJob(final BuildJob job) {
+		MetricsBuild metricsBuild = new MetricsBuild();
+		metricsBuild.initWithEmptyResults();
+		
+		metricsBuild.setCurrentAnalysisResult(currentAnalysisResult);
+		metricsBuild.setCurrentCheckstyleResult(currentCheckstyleResult);
+		metricsBuild.setCurrentFindbugsResult(currentFindbugsResult);
+		
+		metricsBuild.setLastAnalysisResult(lastAnalysisResult);
+		metricsBuild.setLastCheckstyleResult(lastCheckstyleResult);
+		metricsBuild.setLastFindbugsResult(lastFindbugsResult);
+		
+		return metricsBuild;
+	}
+	
+	private void getAnalysisResultForFinishedBuildJob(BuildJob job) {
+		currentAnalysisResult = analysisService.analysisLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		
+		lastAnalysisResult = new AnalysisResult();
+		if(job.getNumber() > 1) {
+			lastAnalysisResult = getAnalysisResult(job.getNumber() - 1);
+		}
+	}
+	
+	private void getFindbugsResultForFinishedBuildJob(BuildJob job) {
+		currentFindbugsResult = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		
+		lastFindbugsResult = new Findbugs();
+		if(job.getNumber() > 1) {
+			lastFindbugsResult = getFindbugs(job.getNumber() - 1);
+		}
+	}
+	
+	private void getCheckstyleResultForFinishedBuildJob(BuildJob job) {
+		currentCheckstyleResult = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+		
+		lastCheckstyleResult = new Checkstyle();
+		if(job.getNumber() > 1) {
+			lastCheckstyleResult = getCheckstyle(job.getNumber());
+		}
+	}
+	
+	private void getMetricsResultsForFinishedBuildJob(BuildJob job) {
+		getAnalysisResultForFinishedBuildJob(job);
+		getFindbugsResultForFinishedBuildJob(job);
+		getCheckstyleResultForFinishedBuildJob(job);
+	}
+	
+	private MetricsBuild getResultForFinishedBuildJob(final BuildJob job) {
+		MetricsBuild metricsBuild = new MetricsBuild();
+		metricsBuild.initWithEmptyResults();
+		
+		metricsBuild.setCurrentAnalysisResult(currentAnalysisResult);
+		metricsBuild.setCurrentCheckstyleResult(currentCheckstyleResult);
+		metricsBuild.setCurrentFindbugsResult(currentFindbugsResult);
+		
+		metricsBuild.setLastAnalysisResult(lastAnalysisResult);
+		metricsBuild.setLastCheckstyleResult(lastCheckstyleResult);
+		metricsBuild.setLastFindbugsResult(lastFindbugsResult);
+		
+		return metricsBuild;
+	}
+	
+	
+	private Findbugs getFindbugs(final int buildNumber) {
+		return findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), buildNumber);
+	}
+	
+	private Checkstyle getCheckstyle(final int buildNumber) {
+		return checkstyleService.checkstyle(JenkinsProperties.getInstance().getMetricsJob(), buildNumber);
+	}
+	
+	private AnalysisResult getAnalysisResult(final int buildNumber) {
+		return analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), buildNumber);
 	}
 	
 	private void setupBuildJobService() {
@@ -115,7 +223,7 @@ public class MetricsController {
 	
 	private RestAdapter getRestAdapter() {
 		OkHttpClient client = new OkHttpClient();
-		client.setReadTimeout(5, TimeUnit.MINUTES);
+		client.setReadTimeout(15, TimeUnit.MINUTES);
 		 
 		RestAdapter.Builder builder = new RestAdapter.Builder();
 		builder.setClient(new OkClient(client));
