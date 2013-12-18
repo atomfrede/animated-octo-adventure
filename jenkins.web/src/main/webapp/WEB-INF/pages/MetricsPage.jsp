@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="./webjars/font-awesome/4.0.3/css/font-awesome.min.css">
 <script src="./webjars/jquery/2.0.3/jquery.min.js"></script>
 <script src="./webjars/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
 <body>
 	<div class="row">
   		<div class="col-md-8">
@@ -303,4 +305,14 @@
   		</div>
 	</div>
 </body>
+<script type="text/javascript">
+function ReloadPage() { 
+	  location.reload();
+};
+
+$(document).ready(function() {
+	//Reload every 5 hours the page.
+	setTimeout("ReloadPage()", 18000000); .
+});
+</script>
 </html>
