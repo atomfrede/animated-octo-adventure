@@ -5,9 +5,25 @@
 <link rel="stylesheet" href="./webjars/font-awesome/4.0.3/css/font-awesome.min.css">
 <script src="./webjars/jquery/2.0.3/jquery.min.js"></script>
 <script src="./webjars/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<body>
+
+<style>
+	th {
+		font-weight: bold;
+		font-size: x-large;
+		font-variant: normal;
+		font-style: normal;
+	}
+	
+	td {
+		font-size: x-large;
+		font-variant: normal;
+		font-style: normal;
+	}
+</style>
+
+<body class="container" >
 	<div class="row">
-  		<div class="col-md-8">
+  		<div class="col-md-12">
   			<div class="panel panel-success">
   				<div class="panel-heading">
   					<h3>
@@ -17,7 +33,7 @@
   					 ${buildjob.fullDisplayName }</h3>
   				</div>
   				<div class="panel-body">
-    				<p><i class="fa fa-time"></i> Dauer: ${buildjob.durationText} </p>
+    				<p><i class="fa fa-time"></i> Duration: ${buildjob.durationText} </p>
  				 </div>
  				 <table class="table table-striped">
  				 	<thead>
@@ -35,13 +51,13 @@
 							<td>${analysisSummaryView.diffHighPriorityWarnings }</td>
 							<td>
 								<c:if test="${analysisSummaryView.diffHighPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${analysisSummaryView.diffHighPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${analysisSummaryView.diffHighPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -51,13 +67,13 @@
 							<td>${analysisSummaryView.diffNormalPriorityWarnings }</td>
 							<td>
 								<c:if test="${analysisSummaryView.diffNormalPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${analysisSummaryView.diffNormalPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${analysisSummaryView.diffNormalPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -67,13 +83,13 @@
 							<td>${analysisSummaryView.diffLowPriorityWarnings }</td>
 							<td>
 								<c:if test="${analysisSummaryView.diffLowPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${analysisSummaryView.diffLowPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${analysisSummaryView.diffLowPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -101,13 +117,13 @@
 							<td>${findbugsSummaryView.diffHighPriorityWarnings }</td>
 							<td>
 								<c:if test="${findbugsSummaryView.diffHighPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${findbugsSummaryView.diffHighPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${findbugsSummaryView.diffHighPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -117,13 +133,13 @@
 							<td>${findbugsSummaryView.diffNormalPriorityWarnings }</td>
 							<td>
 								<c:if test="${findbugsSummaryView.diffNormalPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${findbugsSummaryView.diffNormalPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${findbugsSummaryView.diffNormalPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -133,13 +149,13 @@
 							<td>${findbugsSummaryView.diffLowPriorityWarnings }</td>
 							<td>
 								<c:if test="${findbugsSummaryView.diffLowPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${findbugsSummaryView.diffLowPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${findbugsSummaryView.diffLowPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -175,13 +191,13 @@
 							<td>${checkstyleSummaryView.diffHighPriorityWarnings }</td>
 							<td>
 								<c:if test="${checkstyleSummaryView.diffHighPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${checkstyleSummaryView.diffHighPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${checkstyleSummaryView.diffHighPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -191,13 +207,13 @@
 							<td>${checkstyleSummaryView.diffNormalPriorityWarnings }</td>
 							<td>
 								<c:if test="${checkstyleSummaryView.diffNormalPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${checkstyleSummaryView.diffNormalPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${checkstyleSummaryView.diffNormalPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -207,13 +223,13 @@
 							<td>${checkstyleSummaryView.diffLowPriorityWarnings }</td>
 							<td>
 								<c:if test="${checkstyleSummaryView.diffLowPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${checkstyleSummaryView.diffLowPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${checkstyleSummaryView.diffLowPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -242,13 +258,13 @@
 							<td>${drySummaryView.diffHighPriorityWarnings }</td>
 							<td>
 								<c:if test="${drySummaryView.diffHighPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${drySummaryView.diffHighPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${drySummaryView.diffHighPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -258,13 +274,13 @@
 							<td>${drySummaryView.diffNormalPriorityWarnings }</td>
 							<td>
 								<c:if test="${drySummaryView.diffNormalPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${drySummaryView.diffNormalPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${drySummaryView.diffNormalPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>
@@ -274,13 +290,13 @@
 							<td>${drySummaryView.diffLowPriorityWarnings }</td>
 							<td>
 								<c:if test="${drySummaryView.diffLowPriorityWarnings == 0}">
-									<i class="fa fa-dot-circle-o"></i>
+									<i class="fa fa-circle-o"></i>
 								</c:if>
 								<c:if test="${drySummaryView.diffLowPriorityWarnings > 0}">
-									<i class="fa fa-level-up"></i>
+									<i class="fa fa-thumbs-o-down"></i>
 								</c:if>
 								<c:if test="${drySummaryView.diffLowPriorityWarnings < 0}">
-									<i class="fa fa-level-down"></i>
+									<i class="fa fa-thumbs-o-up"></i>
 								</c:if>
 							</td>
 						</tr>

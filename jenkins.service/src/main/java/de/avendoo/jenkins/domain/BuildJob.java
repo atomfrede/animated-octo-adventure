@@ -90,7 +90,7 @@ public class BuildJob implements Serializable {
 	
 	public String getDurationText() {
 		Period period = new Period(getDuration());
-		String durationText = new PeriodFormatterBuilder().appendHours().appendMinutes().appendSuffix(" Minute", " Minute") .appendSeparator(" und ").appendSeconds() .appendSuffix(" Sekunde", " Sekunden").toFormatter().print(period);
+		String durationText = new PeriodFormatterBuilder().appendHours().appendMinutes().appendSuffix(" minute", " minutes") .appendSeparator(" and ").appendSeconds() .appendSuffix(" second", " seconds").toFormatter().print(period);
 		return durationText;
 	}
 	
