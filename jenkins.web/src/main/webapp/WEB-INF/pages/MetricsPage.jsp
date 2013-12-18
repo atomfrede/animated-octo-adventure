@@ -319,4 +319,13 @@
   		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	function ReloadPage() { 
+		location.reload();
+	};
+
+	$(document).ready(function() {
+		setTimeout("ReloadPage()", 21600000); .
+	});
+</script>
 </html>
