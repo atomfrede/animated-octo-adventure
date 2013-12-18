@@ -189,7 +189,7 @@ public class MetricsController {
 		
 		lastCheckstyleResult = new Checkstyle();
 		if(job.getNumber() > 1) {
-			lastCheckstyleResult = getCheckstyleResult(job.getNumber());
+			lastCheckstyleResult = getCheckstyleResult(job.getNumber() - 1);
 		}
 	}
 	
@@ -198,7 +198,7 @@ public class MetricsController {
 		
 		lastDryResult = new DuplicatedCode();
 		if(job.getNumber() > 1) {
-			lastDryResult = getDryResult(job.getNumber());
+			lastDryResult = getDryResult(job.getNumber() - 1);
 		}
 	}
 	
