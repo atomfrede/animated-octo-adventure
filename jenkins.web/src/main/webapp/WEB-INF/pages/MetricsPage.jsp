@@ -325,7 +325,7 @@
 	};
 
 	$(document).ready(function() {
-		setTimeout("ReloadPage()", 21600000); .
+		setTimeout("ReloadPage()", 21600000);
 	});
 </script>
 </html>
