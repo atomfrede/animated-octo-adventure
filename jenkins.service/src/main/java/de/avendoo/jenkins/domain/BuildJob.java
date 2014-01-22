@@ -1,10 +1,8 @@
 package de.avendoo.jenkins.domain;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 import org.joda.time.Period;
-import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 import com.google.gson.Gson;
