@@ -1,0 +1,19 @@
+.details {
+	text-align: center;
+	font-size: 250%;
+}
+
+.details > .label {
+	margin: 10px;
+	
+}
+
+.all-warnings {
+	text-align: center;
+	font-size: 400%;
+	font-weight:bold;
+}
+
+.widget-heading {
+	font-size: 300%;
+}
