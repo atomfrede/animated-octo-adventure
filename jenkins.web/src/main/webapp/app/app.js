@@ -12,6 +12,10 @@ angular.module('ng-dashboard', [
                              'ng-dashboard.services.buildjob',
                              'ng-dashboard.controllers.buildjob',
                              'ng-dashboard.services.testreport',
-                             'ng-dashboard.controllers.testreport'
+                             'ng-dashboard.controllers.testreport',
+                             'ng-dashboard.services.pmd',
+                             'ng-dashboard.controllers.pmd',
+                             'ng-dashboard.services.leaderboard',
+                             'ng-dashboard.controllers.leaderboard'
                              ]);
                         

@@ -24,7 +24,10 @@
 <script src="./app/controllers/buildjob.js"></script>
 <script src="./app/services/testreport.js"></script>
 <script src="./app/controllers/testreport.js"></script>
-
+<script src="./app/services/pmd.js"></script>
+<script src="./app/controllers/pmd.js"></script>
+<script src="./app/services/leaderboard.js"></script>
+<script src="./app/controllers/leaderboard.js"></script>
 
 <body ng-app="ng-dashboard" class="container">
 
@@ -142,6 +145,34 @@
     		</div>
  	 	</div>
 	</div>
+</div>
+
+<div class="col-md-4 widget" ng-controller="LeaderboardController">
+<div class="panel panel-default">
+
+  <div class="panel-heading widget-heading"><i class="fa fa-gamepad"></i>Leader Board</div>
+
+
+  <!-- Table -->
+  <table class="table table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Participant</th>
+				<th>Score</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="p in participants">
+				<td><img src="{{p.userImage}}"/></td>
+				<td>{{p.fullname}}</td>
+				<td>{{p.score}}</td>
+			<tr>
+		</tbody>
+  </table>
+</div>
+
+
 </div>
 
 </div>
