@@ -26,7 +26,6 @@ public class LeaderboardService {
 		boolean skip = true;
 		for(Element tableRow:tableRows){
 			if(!skip) {
-				System.out.println("Table Row: "+tableRow.text());
 				Participant p = extractParticipantOfRow(tableRow);
 				board.addParticipant(p);
 			}
