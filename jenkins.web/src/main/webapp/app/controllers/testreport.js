@@ -13,6 +13,8 @@ app.controller('TestreportController', ['$scope', 'TestreportFactory', function 
 	    } else {
 	    	$scope.good = true;
 	    }
+	    
+	    $scope.done = true;
 
 	  })
 }]);

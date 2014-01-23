@@ -19,6 +19,8 @@ app.controller('AnalysisController', ['$scope', 'AnalysisFactory', function ($sc
 	    } else {
 	    	$scope.same = true;
 	    }
+	    
+	    $scope.done = true;
 
 	  })
 }]);

@@ -42,19 +42,24 @@
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-warning"></i> Analysis</div>
   		<div class="panel-body">
-    		<div class="all-warnings">
-    			{{numberOfWarnings}} 
-    			<i class="fa fa-circle-o" ng-show="same"></i>
-    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-    		</div>
-    		<div class="chart">
-    			<canvas id="analysis-chart" width="auto" height="200px;"></canvas>
-    		</div>
-    		<div class="details">
-    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+  			<div class="loading" ng-hide="done">
+  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
+  			</div>
+  			<div class="results" ng-show="done">
+	    		<div class="all-warnings">
+	    			{{numberOfWarnings}} 
+	    			<i class="fa fa-circle-o" ng-show="same"></i>
+	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
+	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
+	    		</div>
+	    		<div class="chart">
+	    			<canvas id="analysis-chart" width="auto" height="200px;"></canvas>
+	    		</div>
+	    		<div class="details">
+	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
+	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
+	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+	    		</div>
     		</div>
  	 	</div>
 	</div>
@@ -64,19 +69,24 @@
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-bug"></i> Findbugs</div>
   		<div class="panel-body">
-    		<div class="all-warnings">
-    			{{numberOfWarnings}} 
-    			<i class="fa fa-circle-o" ng-show="same"></i>
-    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-    		</div>
-    		<div class="chart">
-    			<canvas id="findbugs-chart" width="auto" height="200px;"></canvas>
-    		</div>
-    		<div class="details">
-    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+  			<div class="loading" ng-hide="done">
+  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
+  			</div>
+  			<div class="results" ng-show="done">
+	    		<div class="all-warnings">
+	    			{{numberOfWarnings}} 
+	    			<i class="fa fa-circle-o" ng-show="same"></i>
+	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
+	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
+	    		</div>
+	    		<div class="chart">
+	    			<canvas id="findbugs-chart" width="auto" height="200px;"></canvas>
+	    		</div>
+	    		<div class="details">
+	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
+	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
+	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+	    		</div>
     		</div>
  	 	</div>
 	</div>
@@ -86,19 +96,24 @@
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-check-square-o"></i> Checkstyle</div>
   		<div class="panel-body">
-    		<div class="all-warnings">
-    			{{numberOfWarnings}} 
-    			<i class="fa fa-circle-o" ng-show="same"></i>
-    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-    		</div>
-    		<div class="chart">
-    			<canvas id="checkstyle-chart" width="auto" height="200px;"></canvas>
-    		</div>
-    		<div class="details">
-    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+  			<div class="loading" ng-hide="done">
+  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
+  			</div>
+  			<div class="results" ng-show="done">
+	    		<div class="all-warnings">
+	    			{{numberOfWarnings}} 
+	    			<i class="fa fa-circle-o" ng-show="same"></i>
+	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
+	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
+	    		</div>
+	    		<div class="chart">
+	    			<canvas id="checkstyle-chart" width="auto" height="200px;"></canvas>
+	    		</div>
+	    		<div class="details">
+	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
+	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
+	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+	    		</div>
     		</div>
  	 	</div>
 	</div>
@@ -108,19 +123,24 @@
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-copy"></i> DRY</div>
   		<div class="panel-body">
-    		<div class="all-warnings">
-    			{{numberOfWarnings}} 
-    			<i class="fa fa-circle-o" ng-show="same"></i>
-    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-    		</div>
-    		<div class="chart">
-    			<canvas id="dry-chart" width="auto" height="200px;"></canvas>
-    		</div>
-    		<div class="details">
-    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+  			<div class="loading" ng-hide="done">
+  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
+  			</div>
+  			<div class="results" ng-show="done">
+	    		<div class="all-warnings">
+	    			{{numberOfWarnings}} 
+	    			<i class="fa fa-circle-o" ng-show="same"></i>
+	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
+	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
+	    		</div>
+	    		<div class="chart">
+	    			<canvas id="dry-chart" width="auto" height="200px;"></canvas>
+	    		</div>
+	    		<div class="details">
+	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
+	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
+	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
+	    		</div>
     		</div>
  	 	</div>
 	</div>
@@ -130,18 +150,23 @@
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-stack-overflow"></i> Test Results</div>
   		<div class="panel-body">
-    		<div class="all-warnings">
-    			<span class="label " ng-class="{'label-success': good, 'panel-danger': failed}">
-    				{{successcount}}/{{totalcount}} 
-    			</span>
-    			<i class="fa fa-circle-o" ng-show="same"></i>
-    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-    		</div>
-
-    		<div class="details">
-    			<span class="label label-danger">{{failcount}}</span>
-    			<span class="label label-warning">{{skipcount}}</span>
+  			<div class="loading" ng-hide="done">
+  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
+  			</div>
+  			<div class="results" ng-show="done">
+	    		<div class="all-warnings">
+	    			<span class="label " ng-class="{'label-success': good, 'panel-danger': failed}">
+	    				{{successcount}}/{{totalcount}} 
+	    			</span>
+	    			<i class="fa fa-circle-o" ng-show="same"></i>
+	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
+	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
+	    		</div>
+	
+	    		<div class="details">
+	    			<span class="label label-danger">{{failcount}}</span>
+	    			<span class="label label-warning">{{skipcount}}</span>
+	    		</div>
     		</div>
  	 	</div>
 	</div>
@@ -151,10 +176,12 @@
 <div class="panel panel-default">
 
   <div class="panel-heading widget-heading"><i class="fa fa-gamepad"></i>Leader Board</div>
-
+	<div class="loading" ng-hide="done">
+  		<i class="fa fa-refresh fa-spin fa-5x" ></i>
+  	</div>
 
   <!-- Table -->
-  <table class="table table-striped table-condensed">
+  <table class="table table-striped table-condensed" ng-show="done">
 		<thead>
 			<tr>
 				<th>#</th>

@@ -8,6 +8,8 @@ app.controller('LeaderboardController', ['$scope', 'LeaderboardFactory', functio
 	LeaderboardFactory.query({}, function (data) {
 		console.log(data);
 		$scope.participants = data.participants;
+		
+		 $scope.done = true;
 	  })
 }]);
 

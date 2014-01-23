@@ -19,6 +19,8 @@ app.controller('PmdController', ['$scope', 'PmdFactory', function ($scope, PmdFa
 	    } else {
 	    	$scope.same = true;
 	    }
+	    
+	    $scope.done = true;
 
 	  })
 }]);

@@ -19,6 +19,8 @@ app.controller('FindbugsController', ['$scope', 'FindbugsFactory', function ($sc
 	    } else {
 	    	$scope.same = true;
 	    }
+	    
+	    $scope.done = true;
 
 	  })
 }]);

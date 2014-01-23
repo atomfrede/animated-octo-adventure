@@ -19,6 +19,8 @@ app.controller('CheckstyleController', ['$scope', 'CheckstyleFactory', function 
 	    } else {
 	    	$scope.same = true;
 	    }
+	    
+	    $scope.done = true;
 
 	  })
 }]);

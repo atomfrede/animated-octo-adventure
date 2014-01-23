@@ -19,6 +19,8 @@ app.controller('DryController', ['$scope', 'DryFactory', function ($scope, DryFa
 	    } else {
 	    	$scope.same = true;
 	    }
+	    
+	    $scope.done = true;
 
 	  })
 }]);
