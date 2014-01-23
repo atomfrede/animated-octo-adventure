@@ -22,6 +22,8 @@
 <script src="./app/controllers/dry.js"></script>
 <script src="./app/services/buildjob.js"></script>
 <script src="./app/controllers/buildjob.js"></script>
+<script src="./app/services/testreport.js"></script>
+<script src="./app/controllers/testreport.js"></script>
 
 
 <body ng-app="ng-dashboard" class="container">
@@ -99,7 +101,7 @@
 	</div>
   </div>
   
-    <div class="col-md-4 widget" ng-controller="DryController">
+  <div class="col-md-4 widget" ng-controller="DryController">
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-copy"></i> DRY</div>
   		<div class="panel-body">
@@ -121,7 +123,28 @@
 	</div>
 </div>
 
-  </div>
+<div class="col-md-4 widget" ng-controller="TestreportController">
+	<div class="panel panel-default">
+  		<div class="panel-heading widget-heading"><i class="fa fa-stack-overflow"></i> Test Results</div>
+  		<div class="panel-body">
+    		<div class="all-warnings">
+    			<span class="label " ng-class="{'label-success': good, 'panel-danger': failed}">
+    				{{successcount}}/{{totalcount}} 
+    			</span>
+    			<i class="fa fa-circle-o" ng-show="same"></i>
+    			<i class="fa fa-thumbs-down" ng-show="more"></i>
+    			<i class="fa fa-thumbs-up" ng-show="less"></i>
+    		</div>
+
+    		<div class="details">
+    			<span class="label label-danger">{{failcount}}</span>
+    			<span class="label label-warning">{{skipcount}}</span>
+    		</div>
+ 	 	</div>
+	</div>
+</div>
+
+</div>
 </div>
 </div>
 

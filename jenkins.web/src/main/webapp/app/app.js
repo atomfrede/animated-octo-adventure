@@ -10,6 +10,8 @@ angular.module('ng-dashboard', [
                              'ng-dashboard.services.dry',
                              'ng-dashboard.controllers.dry',
                              'ng-dashboard.services.buildjob',
-                             'ng-dashboard.controllers.buildjob'
+                             'ng-dashboard.controllers.buildjob',
+                             'ng-dashboard.services.testreport',
+                             'ng-dashboard.controllers.testreport'
                              ]);
                         
