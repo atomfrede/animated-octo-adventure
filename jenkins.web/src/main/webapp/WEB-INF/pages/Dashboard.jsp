@@ -28,6 +28,8 @@
 <script src="./app/controllers/pmd.js"></script>
 <script src="./app/services/leaderboard.js"></script>
 <script src="./app/controllers/leaderboard.js"></script>
+<script src="./app/services/jacoco.js"></script>
+<script src="./app/controllers/jacoco.js"></script>
 
 <body ng-app="ng-dashboard" class="container">
 
@@ -146,6 +148,28 @@
 	</div>
 </div>
 
+ <div class="col-md-4 widget" ng-controller="JacocoController">
+	<div class="panel panel-default">
+  		<div class="panel-heading widget-heading"><i class="fa fa-sitemap"></i> Jacoco</div>
+  		<div class="panel-body">
+  			<div class="loading" ng-hide="done">
+  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
+  			</div>
+  			<div class="results" ng-show="done">
+	  
+	    		<div class="chart">
+	    			<canvas id="jacoco-chart" width="auto" height="200px;"></canvas>
+	    		</div>
+	    		<div class="details">
+	    			<span class="label label-danger">{{branchCoverage}}</span>
+	    			<span class="label label-warning">{{methodCoverage}}</span>
+	    			<span class="label label-info">{{lineCoverage}}</span>
+	    		</div>
+    		</div>
+ 	 	</div>
+	</div>
+</div>
+
 <div class="col-md-4 widget" ng-controller="TestreportController">
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-stack-overflow"></i> Test Results</div>
@@ -175,7 +199,7 @@
 <div class="col-md-4 widget" ng-controller="LeaderboardController">
 <div class="panel panel-default">
 
-  <div class="panel-heading widget-heading"><i class="fa fa-gamepad"></i>Leader Board</div>
+  <div class="panel-heading widget-heading"><i class="fa fa-gamepad"></i> Leader Board</div>
 	<div class="loading" ng-hide="done">
   		<i class="fa fa-refresh fa-spin fa-5x" ></i>
   	</div>

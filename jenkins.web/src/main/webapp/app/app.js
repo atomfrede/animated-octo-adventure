@@ -16,6 +16,8 @@ angular.module('ng-dashboard', [
                              'ng-dashboard.services.pmd',
                              'ng-dashboard.controllers.pmd',
                              'ng-dashboard.services.leaderboard',
-                             'ng-dashboard.controllers.leaderboard'
+                             'ng-dashboard.controllers.leaderboard',
+                             'ng-dashboard.services.jacoco',
+                             'ng-dashboard.controllers.jacoco'
                              ]);
                         
