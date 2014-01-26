@@ -14,7 +14,7 @@ app.controller('DryController', ['$scope', 'DryFactory', function ($scope, DryFa
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
 	    	$scope.more = true;
-	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0) {
+	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) < 0) {
 	    	$scope.more = true;
 	    } else {
 	    	$scope.same = true;

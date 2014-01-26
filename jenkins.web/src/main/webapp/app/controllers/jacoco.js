@@ -6,7 +6,6 @@ var app = angular.module('ng-dashboard.controllers.jacoco', []);
 
 app.controller('JacocoController', ['$scope', 'JacocoFactory', function ($scope, JacocoFactory) {
 	JacocoFactory.query({}, function (data) {
-		console.log(data.branchCoverage.percentage);
 	    setupJacocoChart(data);
 	    $scope.done = true;
 

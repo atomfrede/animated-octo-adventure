@@ -14,8 +14,8 @@ app.controller('CheckstyleController', ['$scope', 'CheckstyleFactory', function 
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
 	    	$scope.more = true;
-	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0) {
-	    	$scope.more = true;
+	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) < 0) {
+	    	$scope.more = false;
 	    } else {
 	    	$scope.same = true;
 	    }

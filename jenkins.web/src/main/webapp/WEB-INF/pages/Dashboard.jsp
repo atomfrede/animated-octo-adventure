@@ -31,6 +31,8 @@
 <script src="./app/services/jacoco.js"></script>
 <script src="./app/controllers/jacoco.js"></script>
 
+<script src="./app/directives/analysisResult.js"></script>
+
 <body ng-app="ng-dashboard" class="container">
 
 
@@ -40,113 +42,27 @@
   
   <div class="panel-body">
   
-   <div class="col-md-4 widget" ng-controller="AnalysisController">
-	<div class="panel panel-default">
-  		<div class="panel-heading widget-heading"><i class="fa fa-warning"></i> Analysis</div>
-  		<div class="panel-body">
-  			<div class="loading" ng-hide="done">
-  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
-  			</div>
-  			<div class="results" ng-show="done">
-	    		<div class="all-warnings">
-	    			{{numberOfWarnings}} 
-	    			<i class="fa fa-circle-o" ng-show="same"></i>
-	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-	    		</div>
-	    		<div class="chart">
-	    			<canvas id="analysis-chart" width="auto" height="200px;"></canvas>
-	    		</div>
-	    		<div class="details">
-	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
-	    		</div>
-    		</div>
- 	 	</div>
-	</div>
-</div>
-  
-  <div class="col-md-4 widget" ng-controller="FindbugsController">
-	<div class="panel panel-default">
-  		<div class="panel-heading widget-heading"><i class="fa fa-bug"></i> Findbugs</div>
-  		<div class="panel-body">
-  			<div class="loading" ng-hide="done">
-  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
-  			</div>
-  			<div class="results" ng-show="done">
-	    		<div class="all-warnings">
-	    			{{numberOfWarnings}} 
-	    			<i class="fa fa-circle-o" ng-show="same"></i>
-	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-	    		</div>
-	    		<div class="chart">
-	    			<canvas id="findbugs-chart" width="auto" height="200px;"></canvas>
-	    		</div>
-	    		<div class="details">
-	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
-	    		</div>
-    		</div>
- 	 	</div>
-	</div>
-  </div>
-  
-  <div class="col-md-4 widget" ng-controller="CheckstyleController">
-	<div class="panel panel-default">
-  		<div class="panel-heading widget-heading"><i class="fa fa-check-square-o"></i> Checkstyle</div>
-  		<div class="panel-body">
-  			<div class="loading" ng-hide="done">
-  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
-  			</div>
-  			<div class="results" ng-show="done">
-	    		<div class="all-warnings">
-	    			{{numberOfWarnings}} 
-	    			<i class="fa fa-circle-o" ng-show="same"></i>
-	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-	    		</div>
-	    		<div class="chart">
-	    			<canvas id="checkstyle-chart" width="auto" height="200px;"></canvas>
-	    		</div>
-	    		<div class="details">
-	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
-	    		</div>
-    		</div>
- 	 	</div>
-	</div>
-  </div>
-  
-  <div class="col-md-4 widget" ng-controller="DryController">
-	<div class="panel panel-default">
-  		<div class="panel-heading widget-heading"><i class="fa fa-copy"></i> DRY</div>
-  		<div class="panel-body">
-  			<div class="loading" ng-hide="done">
-  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
-  			</div>
-  			<div class="results" ng-show="done">
-	    		<div class="all-warnings">
-	    			{{numberOfWarnings}} 
-	    			<i class="fa fa-circle-o" ng-show="same"></i>
-	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-	    		</div>
-	    		<div class="chart">
-	    			<canvas id="dry-chart" width="auto" height="200px;"></canvas>
-	    		</div>
-	    		<div class="details">
-	    			<span class="label label-danger">{{numberOfHighPriorityWarnings}}</span>
-	    			<span class="label label-warning">{{numberOfNormalPriorityWarnings}}</span>
-	    			<span class="label label-info">{{numberOfLowPriorityWarnings}}</span>
-	    		</div>
-    		</div>
- 	 	</div>
-	</div>
-</div>
+	<div demo done={{done}} chart="analysis-chart"
+			widget="Analysis"
+			icon="fa-warning"
+			ng-controller="AnalysisController"></div>
+			
+	
+		<div demo  done={{done}} chart="findbugs-chart" 
+   			widget="Findbugs" 
+   			icon="fa-bug	" 
+   			ng-controller="FindbugsController"></div>
+   					
+   	<div demo chart="checkstyle-chart" 
+   			widget="Checkstyle" 
+   			icon="fa-check-square-o" 
+   			ng-controller="CheckstyleController"></div>
+   			
+   	<div demo  chart="dry-chart" 
+   			widget="DRY" 
+   			icon="fa-copy" 
+   			ng-controller="DryController"></div>
+
 
  <div class="col-md-4 widget" ng-controller="JacocoController">
 	<div class="panel panel-default">

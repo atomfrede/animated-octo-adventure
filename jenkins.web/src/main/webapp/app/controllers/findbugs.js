@@ -14,7 +14,7 @@ app.controller('FindbugsController', ['$scope', 'FindbugsFactory', function ($sc
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
 	    	$scope.more = true;
-	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0) {
+	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) < 0) {
 	    	$scope.more = true;
 	    } else {
 	    	$scope.same = true;
