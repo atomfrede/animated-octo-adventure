@@ -19,6 +19,9 @@ angular.module('ng-dashboard', [
                              'ng-dashboard.controllers.leaderboard',
                              'ng-dashboard.services.jacoco',
                              'ng-dashboard.controllers.jacoco',
-                             'ng-dashboard.directives.demo'
+                             'ng-dashboard.directives.analysisresult',
+                             'ng-dashboard.directives.leaderboard',
+                             'ng-dashboard.directives.testreport',
+                             'ng-dashboard.directives.jacoco'
                              ]);
                         

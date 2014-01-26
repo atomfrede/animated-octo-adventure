@@ -1,0 +1,24 @@
+
+<div class="col-md-4 widget" ng-controller="JacocoController">
+	<div class="panel panel-default">
+		<div class="panel-heading widget-heading">
+			<i class="fa fa-sitemap"></i> Jacoco
+		</div>
+		<div class="panel-body">
+			<div class="loading" ng-hide="done">
+				<i class="fa fa-refresh fa-spin fa-5x"></i>
+			</div>
+			<div class="results" ng-show="done">
+
+				<div class="chart">
+					<canvas id="jacoco-chart" width="auto" height="200px;"></canvas>
+				</div>
+				<div class="details">
+					<span class="label label-danger">{{branchCoverage}}</span> <span
+						class="label label-warning">{{methodCoverage}}</span> <span
+						class="label label-info">{{lineCoverage}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -10,9 +10,10 @@
 			</div>
 			<div class="results" ng-show="$parent.done">
 				<div class="all-warnings">
-					{{$parent.numberOfWarnings}} <i class="fa fa-circle-o" ng-show="$parent.same"></i>
-					<i class="fa fa-thumbs-down" ng-show="$parent.more"></i> <i
-						class="fa fa-thumbs-up" ng-show="$parent.less"></i>
+					{{$parent.numberOfWarnings}} <i class="fa fa-circle-o"
+						ng-show="$parent.same"></i> <i class="fa fa-thumbs-down"
+						ng-show="$parent.more"></i> <i class="fa fa-thumbs-up"
+						ng-show="$parent.less"></i>
 				</div>
 				<div class="chart">
 					<canvas id="{{chart}}" width="auto" height="200px;"></canvas>

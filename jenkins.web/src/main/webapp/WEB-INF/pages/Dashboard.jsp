@@ -31,7 +31,10 @@
 <script src="./app/services/jacoco.js"></script>
 <script src="./app/controllers/jacoco.js"></script>
 
-<script src="./app/directives/analysisResult.js"></script>
+<script src="./app/directives/analysisresult.js"></script>
+<script src="./app/directives/leaderboard.js"></script>
+<script src="./app/directives/testreport.js"></script>
+<script src="./app/directives/jacoco.js"></script>
 
 <body ng-app="ng-dashboard" class="container">
 
@@ -42,105 +45,35 @@
   
   <div class="panel-body">
   
-	<div demo done={{done}} chart="analysis-chart"
+	<div analysisresult done={{done}} chart="analysis-chart"
 			widget="Analysis"
 			icon="fa-warning"
 			ng-controller="AnalysisController"></div>
 			
 	
-		<div demo  done={{done}} chart="findbugs-chart" 
+		<div analysisresult  done={{done}} chart="findbugs-chart" 
    			widget="Findbugs" 
    			icon="fa-bug	" 
    			ng-controller="FindbugsController"></div>
    					
-   	<div demo chart="checkstyle-chart" 
+   	<div analysisresult chart="checkstyle-chart" 
    			widget="Checkstyle" 
    			icon="fa-check-square-o" 
    			ng-controller="CheckstyleController"></div>
    			
-   	<div demo  chart="dry-chart" 
+   	<div analysisresult chart="dry-chart" 
    			widget="DRY" 
    			icon="fa-copy" 
    			ng-controller="DryController"></div>
 
 
- <div class="col-md-4 widget" ng-controller="JacocoController">
-	<div class="panel panel-default">
-  		<div class="panel-heading widget-heading"><i class="fa fa-sitemap"></i> Jacoco</div>
-  		<div class="panel-body">
-  			<div class="loading" ng-hide="done">
-  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
-  			</div>
-  			<div class="results" ng-show="done">
-	  
-	    		<div class="chart">
-	    			<canvas id="jacoco-chart" width="auto" height="200px;"></canvas>
-	    		</div>
-	    		<div class="details">
-	    			<span class="label label-danger">{{branchCoverage}}</span>
-	    			<span class="label label-warning">{{methodCoverage}}</span>
-	    			<span class="label label-info">{{lineCoverage}}</span>
-	    		</div>
-    		</div>
- 	 	</div>
-	</div>
-</div>
+<div jacoco></div>
 
-<div class="col-md-4 widget" ng-controller="TestreportController">
-	<div class="panel panel-default">
-  		<div class="panel-heading widget-heading"><i class="fa fa-stack-overflow"></i> Test Results</div>
-  		<div class="panel-body">
-  			<div class="loading" ng-hide="done">
-  				<i class="fa fa-refresh fa-spin fa-5x" ></i>
-  			</div>
-  			<div class="results" ng-show="done">
-	    		<div class="all-warnings">
-	    			<span class="label " ng-class="{'label-success': good, 'panel-danger': failed}">
-	    				{{successcount}}/{{totalcount}} 
-	    			</span>
-	    			<i class="fa fa-circle-o" ng-show="same"></i>
-	    			<i class="fa fa-thumbs-down" ng-show="more"></i>
-	    			<i class="fa fa-thumbs-up" ng-show="less"></i>
-	    		</div>
-	
-	    		<div class="details">
-	    			<span class="label label-danger">{{failcount}}</span>
-	    			<span class="label label-warning">{{skipcount}}</span>
-	    		</div>
-    		</div>
- 	 	</div>
-	</div>
-</div>
+<div testreport></div>
 
-<div class="col-md-4 widget" ng-controller="LeaderboardController">
-<div class="panel panel-default">
-
-  <div class="panel-heading widget-heading"><i class="fa fa-gamepad"></i> Leader Board</div>
-	<div class="loading" ng-hide="done">
-  		<i class="fa fa-refresh fa-spin fa-5x" ></i>
-  	</div>
-
-  <!-- Table -->
-  <table class="table table-striped table-condensed" ng-show="done">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Participant</th>
-				<th>Score</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="p in participants">
-				<td><img src="{{p.userImage}}"/></td>
-				<td>{{p.fullname}}</td>
-				<td>{{p.score}}</td>
-			<tr>
-		</tbody>
-  </table>
-</div>
+<div leaderboard></div>
 
 
-</div>
 
 </div>
 </div>
