@@ -22,6 +22,8 @@ app.controller('PmdController', ['$scope', 'PmdFactory', function ($scope, PmdFa
 	    
 	    $scope.done = true;
 
+	  }, function (error) {
+		  $scope.error = true;
 	  })
 }]);
 

@@ -22,6 +22,8 @@ app.controller('CheckstyleController', ['$scope', 'CheckstyleFactory', function 
 	    
 	    $scope.done = true;
 
+	  }, function (error) {
+		  $scope.error = true;
 	  })
 }]);
 

@@ -22,6 +22,8 @@ app.controller('DryController', ['$scope', 'DryFactory', function ($scope, DryFa
 	    
 	    $scope.done = true;
 
+	  }, function (error) {
+		  $scope.error = true;
 	  })
 }]);
 

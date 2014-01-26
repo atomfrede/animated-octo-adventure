@@ -2,7 +2,10 @@
 	<div class="panel panel-default">
   		<div class="panel-heading widget-heading"><i class="fa fa-stack-overflow"></i> Test Results</div>
   		<div class="panel-body">
-  			<div class="loading" ng-hide="done">
+  			<div class="error-wrapper" ng-show="error">
+				<span class="label label-danger">Failed to load data.</span>
+			</div>
+  			<div class="loading" ng-hide="done || error">
   				<i class="fa fa-refresh fa-spin fa-5x" ></i>
   			</div>
   			<div class="results" ng-show="done">

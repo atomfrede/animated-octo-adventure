@@ -4,7 +4,10 @@
 		<div class="panel-heading widget-heading">
 			<i class="fa fa-gamepad"></i> Leader Board
 		</div>
-		<div class="loading" ng-hide="done">
+		<div class="error-wrapper" ng-show="error">
+				<span class="label label-danger">Failed to load data.</span>
+		</div>
+		<div class="loading" ng-hide="done || error">
 			<i class="fa fa-refresh fa-spin fa-5x"></i>
 		</div>
 

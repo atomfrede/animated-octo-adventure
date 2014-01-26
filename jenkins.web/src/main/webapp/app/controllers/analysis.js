@@ -22,6 +22,8 @@ app.controller('AnalysisController', ['$scope', 'AnalysisFactory', function ($sc
 	    
 	    $scope.done = true;
 
+	  }, function (error) {
+		  $scope.error = true;
 	  })
 }]);
 

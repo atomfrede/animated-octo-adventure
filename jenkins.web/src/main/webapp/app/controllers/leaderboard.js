@@ -9,6 +9,8 @@ app.controller('LeaderboardController', ['$scope', 'LeaderboardFactory', functio
 		$scope.participants = data.participants;
 		
 		 $scope.done = true;
+	  }, function(error) {
+		  $scope.error = true;
 	  })
 }]);
 

@@ -22,6 +22,8 @@ app.controller('FindbugsController', ['$scope', 'FindbugsFactory', function ($sc
 	    
 	    $scope.done = true;
 
+	  }, function (error) {
+		  $scope.error = true;
 	  })
 }]);
 
