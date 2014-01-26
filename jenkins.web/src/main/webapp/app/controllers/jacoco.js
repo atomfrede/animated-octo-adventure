@@ -9,6 +9,9 @@ app.controller('JacocoController', ['$scope', 'JacocoFactory', function ($scope,
 	    setupJacocoChart(data);
 	    $scope.done = true;
 
+	  },
+	  function (error) {
+		  $scope.error = true;
 	  })
 }]);
 
