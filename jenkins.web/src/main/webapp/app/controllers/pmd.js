@@ -23,6 +23,8 @@ app.controller('PmdController', ['$scope', 'PmdFactory', function ($scope, PmdFa
 	    }
 	    
 	    $scope.done = true;
+	    
+	    fn_computeSize();
 
 	  }, function (error) {
 		  $scope.error = true;

@@ -23,6 +23,8 @@ app.controller('AnalysisController', ['$scope', 'AnalysisFactory', function ($sc
 	    }
 	    
 	    $scope.done = true;
+	    
+	    fn_computeSize();
 
 	  }, function (error) {
 		  $scope.error = true;
@@ -48,3 +50,4 @@ function setupAnalysisChart(data) {
 	var ctx = document.getElementById("analysis-chart").getContext("2d");
 	var analysisChart = new Chart(ctx).Doughnut(chartData);
 }
+

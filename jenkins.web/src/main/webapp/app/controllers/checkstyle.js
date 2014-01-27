@@ -23,6 +23,8 @@ app.controller('CheckstyleController', ['$scope', 'CheckstyleFactory', function 
 	    }
 	    
 	    $scope.done = true;
+	    
+	    fn_computeSize();
 
 	  }, function (error) {
 		  $scope.error = true;

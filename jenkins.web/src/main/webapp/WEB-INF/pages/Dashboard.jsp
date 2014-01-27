@@ -81,9 +81,23 @@
 
 </body>
 <script type="text/javascript">
-$( document ).ready(function() {
-
+$(document).ready(function() {
+	
 });
+
+function fn_computeSize() {
+	console.log("Compute size....");
+	var maxHeight = 0;
+	$.each($(".details"), function( index, value ) {
+		if($(value).height() > maxHeight) {
+			maxHeight = $(value).height();
+		}
+	});	
+	
+	$.each($(".details"), function( index, value ) {
+		$(value).css("min-height", maxHeight+"px");
+	});	
+}
 
 </script>
 </html>

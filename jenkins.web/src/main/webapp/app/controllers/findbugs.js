@@ -23,6 +23,8 @@ app.controller('FindbugsController', ['$scope', 'FindbugsFactory', function ($sc
 	    }
 	    
 	    $scope.done = true;
+	    
+	    fn_computeSize();
 
 	  }, function (error) {
 		  $scope.error = true;

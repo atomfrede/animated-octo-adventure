@@ -23,6 +23,8 @@ app.controller('DryController', ['$scope', 'DryFactory', function ($scope, DryFa
 	    }
 	    
 	    $scope.done = true;
+	    
+	    fn_computeSize();
 
 	  }, function (error) {
 		  $scope.error = true;
