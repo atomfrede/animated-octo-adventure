@@ -82,24 +82,7 @@
 </body>
 <script type="text/javascript">
 $( document ).ready(function() {
-	var ws = new WebSocket('ws://localhost:8080/jenkins-monitor/notifications');
-	
-	  ws.onopen = function(event) {
-	      console.log('websocket connection open', event);
-	      ws.send('a message from the client');
-	  };
-	  
-	  ws.onclose = function(event) {
-	      console.log('websocket connection closed', event);
-	  };
-	  
-	  ws.onmessage = function(event) {
-	      console.log('websocket message received', event);
-	  };
-	  
-	  ws.onerror = function(event) {
-	      console.log('an error occurred', event);
-	  };
+
 });
 
 </script>
