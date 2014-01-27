@@ -36,7 +36,7 @@
 <script src="./app/directives/testreport.js"></script>
 <script src="./app/directives/jacoco.js"></script>
 
-<body ng-app="ng-dashboard" class="container">
+<body ng-app="ng-dashboard" class="full-wrapper">
 
 
 <div class="row">

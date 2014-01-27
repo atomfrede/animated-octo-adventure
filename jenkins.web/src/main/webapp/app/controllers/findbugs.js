@@ -10,12 +10,14 @@ app.controller('FindbugsController', ['$scope', 'FindbugsFactory', function ($sc
 	    $scope.numberOfHighPriorityWarnings = data.numberOfHighPriorityWarnings;
 	    $scope.numberOfNormalPriorityWarnings = data.numberOfNormalPriorityWarnings;
 	    $scope.numberOfLowPriorityWarnings = data.numberOfLowPriorityWarnings;
+	    $scope.numberOfNewWarnings = data.numberOfFixedWarnings - data.numberOfNewWarnings;
+	    
 	    setupFindbugsChart(data);
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
 	    	$scope.more = true;
 	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) < 0) {
-	    	$scope.more = true;
+	    	$scope.less = true;
 	    } else {
 	    	$scope.same = true;
 	    }

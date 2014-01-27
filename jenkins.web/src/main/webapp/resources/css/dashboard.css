@@ -1,6 +1,6 @@
 .details {
 	text-align: center;
-	font-size: 190%;
+	font-size: 250%;
 }
 
 .details > .label {
@@ -23,5 +23,13 @@
 }
 
 .error-wrapper {
+	text-align: center;
+}
+
+.full-wrapper {
+	padding: 0 15px;
+}
+
+.chart {
 	text-align: center;
 }

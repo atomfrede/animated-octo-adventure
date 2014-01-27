@@ -10,12 +10,14 @@ app.controller('CheckstyleController', ['$scope', 'CheckstyleFactory', function 
 	    $scope.numberOfHighPriorityWarnings = data.numberOfHighPriorityWarnings;
 	    $scope.numberOfNormalPriorityWarnings = data.numberOfNormalPriorityWarnings;
 	    $scope.numberOfLowPriorityWarnings = data.numberOfLowPriorityWarnings;
+	    $scope.numberOfNewWarnings = data.numberOfFixedWarnings - data.numberOfNewWarnings;
+	    
 	    setupCheckstyleChart(data);
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
 	    	$scope.more = true;
 	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) < 0) {
-	    	$scope.more = false;
+	    	$scope.less = true;
 	    } else {
 	    	$scope.same = true;
 	    }
