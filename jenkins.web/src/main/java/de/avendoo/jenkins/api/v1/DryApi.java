@@ -20,8 +20,19 @@ public class DryApi extends AbstractApi {
 	public DuplicatedCode getDefaultFindbugsResult() {
 		setupBuildJobService();
 		setupDryService();
-				
-		return dryService.dryLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+
+        DuplicatedCode lastBuild = dryService.dryLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+        DuplicatedCode referenceBuild = dryService.dry(JenkinsProperties.getInstance().getMetricsJob(), lastBuild.getReferenceBuild().getNumber());
+
+        int diffLowPrio = lastBuild.getNumberOfLowPriorityWarnings() - referenceBuild.getNumberOfLowPriorityWarnings();
+        int diffNormalPrio = lastBuild.getNumberOfNormalPriorityWarnings() - referenceBuild.getNumberOfNormalPriorityWarnings();
+        int diffHighPrio = lastBuild.getNumberOfHighPriorityWarnings() - referenceBuild.getNumberOfHighPriorityWarnings();
+
+        lastBuild.setNumberOfNewLowPriorityWarnings(diffLowPrio);
+        lastBuild.setNumberOfNewNormalPriorityWarnings(diffNormalPrio);
+        lastBuild.setNumberOfNewHighPriorityWarnings(diffHighPrio);
+
+        return lastBuild;
 	}
 	
 	private void setupDryService() {

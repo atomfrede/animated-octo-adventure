@@ -20,8 +20,19 @@ public class CheckstyleApi extends AbstractApi{
 	public Checkstyle getDefaultFindbugsResult() {
 		setupBuildJobService();
 		setupCheckstyleService();
-				
-		return checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+
+        Checkstyle lastBuild = checkstyleService.checkstyleLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+        Checkstyle referenceBuild = checkstyleService.checkstyle(JenkinsProperties.getInstance().getMetricsJob(), lastBuild.getReferenceBuild().getNumber());
+
+        int diffLowPrio = lastBuild.getNumberOfLowPriorityWarnings() - referenceBuild.getNumberOfLowPriorityWarnings();
+        int diffNormalPrio = lastBuild.getNumberOfNormalPriorityWarnings() - referenceBuild.getNumberOfNormalPriorityWarnings();
+        int diffHighPrio = lastBuild.getNumberOfHighPriorityWarnings() - referenceBuild.getNumberOfHighPriorityWarnings();
+
+        lastBuild.setNumberOfNewLowPriorityWarnings(diffLowPrio);
+        lastBuild.setNumberOfNewNormalPriorityWarnings(diffNormalPrio);
+        lastBuild.setNumberOfNewHighPriorityWarnings(diffHighPrio);
+
+        return lastBuild;
 	}
 	
 	private void setupCheckstyleService() {

@@ -21,8 +21,19 @@ public class FindbugsApi extends AbstractApi {
 		setupBuildJobService();
 		setupFindbugsService();
 				
-		return findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
-	}
+		Findbugs lastBuild = findbugsService.findbugsLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+        Findbugs referenceBuild = findbugsService.findbugs(JenkinsProperties.getInstance().getMetricsJob(), lastBuild.getReferenceBuild().getNumber());
+
+        int diffLowPrio = lastBuild.getNumberOfLowPriorityWarnings() - referenceBuild.getNumberOfLowPriorityWarnings();
+	    int diffNormalPrio = lastBuild.getNumberOfNormalPriorityWarnings() - referenceBuild.getNumberOfNormalPriorityWarnings();
+        int diffHighPrio = lastBuild.getNumberOfHighPriorityWarnings() - referenceBuild.getNumberOfHighPriorityWarnings();
+
+        lastBuild.setNumberOfNewLowPriorityWarnings(diffLowPrio);
+        lastBuild.setNumberOfNewNormalPriorityWarnings(diffNormalPrio);
+        lastBuild.setNumberOfNewHighPriorityWarnings(diffHighPrio);
+
+        return lastBuild;
+    }
 	
 	private void setupFindbugsService() {
 		findbugsService = getRestAdapter().create(FindbugsService.class);

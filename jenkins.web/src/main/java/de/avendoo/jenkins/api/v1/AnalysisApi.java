@@ -21,7 +21,18 @@ public class AnalysisApi extends AbstractApi {
 		setupBuildJobService();
 		setupAnalysisService();
 
-		return analysisService.analysisLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+        AnalysisResult lastBuild = analysisService.analysisLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+        AnalysisResult referenceBuild = analysisService.analysis(JenkinsProperties.getInstance().getMetricsJob(), lastBuild.getReferenceBuild().getNumber());
+
+        int diffLowPrio = lastBuild.getNumberOfLowPriorityWarnings() - referenceBuild.getNumberOfLowPriorityWarnings();
+        int diffNormalPrio = lastBuild.getNumberOfNormalPriorityWarnings() - referenceBuild.getNumberOfNormalPriorityWarnings();
+        int diffHighPrio = lastBuild.getNumberOfHighPriorityWarnings() - referenceBuild.getNumberOfHighPriorityWarnings();
+
+        lastBuild.setNumberOfNewLowPriorityWarnings(diffLowPrio);
+        lastBuild.setNumberOfNewNormalPriorityWarnings(diffNormalPrio);
+        lastBuild.setNumberOfNewHighPriorityWarnings(diffHighPrio);
+
+		return lastBuild;
 	}
 
 	private void setupAnalysisService() {

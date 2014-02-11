@@ -14,6 +14,11 @@ public class AnalysisResult implements Serializable {
 	private int numberOfNewWarnings;
 	private int numberOfNormalPriorityWarnings;
 	private int numberOfWarnings;
+    private int numberOfNewHighPriorityWarnings;
+    private int numberOfNewNormalPriorityWarnings;
+    private int numberOfNewLowPriorityWarnings;
+
+    private ReferenceBuild referenceBuild;
 	
 	public AnalysisResult setNumberOfFixedWarnings(int numberOfFixedWarnings) {
 		this.numberOfFixedWarnings = numberOfFixedWarnings;
@@ -44,6 +49,26 @@ public class AnalysisResult implements Serializable {
 		this.numberOfWarnings = numberOfWarnings;
 		return this;
 	}
+
+    public AnalysisResult setNumberOfNewHighPriorityWarnings(int numberOfNewHighPriorityWarnings) {
+        this.numberOfNewHighPriorityWarnings = numberOfNewHighPriorityWarnings;
+        return this;
+    }
+
+    public AnalysisResult setNumberOfNewNormalPriorityWarnings(int numberOfNewNormalPriorityWarnings) {
+        this.numberOfNewNormalPriorityWarnings = numberOfNewNormalPriorityWarnings;
+        return this;
+    }
+
+    public AnalysisResult setNumberOfNewLowPriorityWarnings(int numberOfNewLowPriorityWarnings) {
+        this.numberOfNewLowPriorityWarnings = numberOfNewLowPriorityWarnings;
+        return this;
+    }
+
+    public AnalysisResult setReferenceBuild(ReferenceBuild referenceBuild) {
+        this.referenceBuild = referenceBuild;
+        return this;
+    }
 	
 	public int getNumberOfFixedWarnings() {
 		return numberOfFixedWarnings;
@@ -68,6 +93,22 @@ public class AnalysisResult implements Serializable {
 	public int getNumberOfWarnings() {
 		return numberOfWarnings;
 	}
+
+    public int getNumberOfNewHighPriorityWarnings() {
+        return numberOfNewHighPriorityWarnings;
+    }
+
+    public int getNumberOfNewNormalPriorityWarnings() {
+        return numberOfNewNormalPriorityWarnings;
+    }
+
+    public int getNumberOfNewLowPriorityWarnings() {
+        return numberOfNewLowPriorityWarnings;
+    }
+
+    public ReferenceBuild getReferenceBuild() {
+        return referenceBuild;
+    }
 	
 	public String toJson() {
 		Gson gson = new Gson();

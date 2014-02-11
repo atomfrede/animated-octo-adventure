@@ -20,8 +20,19 @@ public class PmdApi extends AbstractApi {
 	public Pmd getDefaultFindbugsResult() {
 		setupBuildJobService();
 		setupPmdService();
-				
-		return pmdService.pmdLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+
+        Pmd lastBuild = pmdService.pmdLastBuild(JenkinsProperties.getInstance().getMetricsJob());
+        Pmd referenceBuild = pmdService.pmd(JenkinsProperties.getInstance().getMetricsJob(), lastBuild.getReferenceBuild().getNumber());
+
+        int diffLowPrio = lastBuild.getNumberOfLowPriorityWarnings() - referenceBuild.getNumberOfLowPriorityWarnings();
+        int diffNormalPrio = lastBuild.getNumberOfNormalPriorityWarnings() - referenceBuild.getNumberOfNormalPriorityWarnings();
+        int diffHighPrio = lastBuild.getNumberOfHighPriorityWarnings() - referenceBuild.getNumberOfHighPriorityWarnings();
+
+        lastBuild.setNumberOfNewLowPriorityWarnings(diffLowPrio);
+        lastBuild.setNumberOfNewNormalPriorityWarnings(diffNormalPrio);
+        lastBuild.setNumberOfNewHighPriorityWarnings(diffHighPrio);
+
+        return lastBuild;
 	}
 	
 	private void setupPmdService() {

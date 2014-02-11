@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-<link rel='stylesheet' href='./webjars/bootstrap/3.0.3/css/bootstrap.min.css'>
-<link rel="stylesheet" href="./webjars/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel='stylesheet' href='./webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
+<link rel="stylesheet" href="./webjars/bootstrap/3.1.0/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="./webjars/font-awesome/4.0.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="./resources/css/dashboard.css">
 <link rel="stylesheet" href="./resources/css/bootstrap-notify.css">
 <script src="./webjars/jquery/2.0.3/jquery.min.js"></script>
-<script src="./webjars/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="./webjars/angularjs/1.2.9/angular.js"></script>
-<script src="./webjars/angularjs/1.2.9/angular-resource.js"></script>
+<script src="./webjars/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="./webjars/angularjs/1.2.11/angular.js"></script>
+<script src="./webjars/angularjs/1.2.11/angular-resource.js"></script>
 <script src="./resources/js/lib/chart.min.js"></script>
 <script src="./resources/js/lib/bootstrap-notify.js"></script>
 <script src="./app/app.js"></script>
