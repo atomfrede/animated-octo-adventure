@@ -10,10 +10,12 @@ app.controller('DryController', ['$scope', 'DryFactory', function ($scope, DryFa
 	    $scope.numberOfHighPriorityWarnings = data.numberOfHighPriorityWarnings;
 	    $scope.numberOfNormalPriorityWarnings = data.numberOfNormalPriorityWarnings;
 	    $scope.numberOfLowPriorityWarnings = data.numberOfLowPriorityWarnings;
+	    $scope.numberOfNewWarnings = data.numberOfNewWarnings - data.numberOfFixedWarnings;
+	    
 	    setupDryChart(data);
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
-	    	$scope.more = true;
+	    	$scope.less = true;
 	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) < 0) {
 	    	$scope.more = true;
 	    } else {
@@ -21,6 +23,8 @@ app.controller('DryController', ['$scope', 'DryFactory', function ($scope, DryFa
 	    }
 	    
 	    $scope.done = true;
+	    
+	    fn_computeSize();
 
 	  }, function (error) {
 		  $scope.error = true;

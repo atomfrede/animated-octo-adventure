@@ -36,7 +36,7 @@
 <script src="./app/directives/testreport.js"></script>
 <script src="./app/directives/jacoco.js"></script>
 
-<body ng-app="ng-dashboard" class="container">
+<body ng-app="ng-dashboard" class="full-wrapper">
 
 
 <div class="row">
@@ -81,26 +81,23 @@
 
 </body>
 <script type="text/javascript">
-$( document ).ready(function() {
-	var ws = new WebSocket('ws://localhost:8080/jenkins-monitor/notifications');
+$(document).ready(function() {
 	
-	  ws.onopen = function(event) {
-	      console.log('websocket connection open', event);
-	      ws.send('a message from the client');
-	  };
-	  
-	  ws.onclose = function(event) {
-	      console.log('websocket connection closed', event);
-	  };
-	  
-	  ws.onmessage = function(event) {
-	      console.log('websocket message received', event);
-	  };
-	  
-	  ws.onerror = function(event) {
-	      console.log('an error occurred', event);
-	  };
 });
+
+function fn_computeSize() {
+	console.log("Compute size....");
+	var maxHeight = 0;
+	$.each($(".details"), function( index, value ) {
+		if($(value).height() > maxHeight) {
+			maxHeight = $(value).height();
+		}
+	});	
+	
+	$.each($(".details"), function( index, value ) {
+		$(value).css("min-height", maxHeight+"px");
+	});	
+}
 
 </script>
 </html>

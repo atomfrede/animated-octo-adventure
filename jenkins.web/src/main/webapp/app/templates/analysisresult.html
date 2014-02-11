@@ -17,6 +17,8 @@
 						ng-show="$parent.same"></i> <i class="fa fa-thumbs-down"
 						ng-show="$parent.more"></i> <i class="fa fa-thumbs-up"
 						ng-show="$parent.less"></i>
+						<br/>
+						<span class="new-warnings">({{$parent.numberOfNewWarnings}})</span>
 				</div>
 				<div class="chart">
 					<canvas id="{{chart}}" width="auto" height="200px;"></canvas>

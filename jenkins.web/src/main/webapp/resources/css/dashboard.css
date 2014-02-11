@@ -25,3 +25,11 @@
 .error-wrapper {
 	text-align: center;
 }
+
+.full-wrapper {
+	padding: 0 15px;
+}
+
+.chart {
+	text-align: center;
+}

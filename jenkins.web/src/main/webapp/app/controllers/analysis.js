@@ -10,10 +10,12 @@ app.controller('AnalysisController', ['$scope', 'AnalysisFactory', function ($sc
 	    $scope.numberOfHighPriorityWarnings = data.numberOfHighPriorityWarnings;
 	    $scope.numberOfNormalPriorityWarnings = data.numberOfNormalPriorityWarnings;
 	    $scope.numberOfLowPriorityWarnings = data.numberOfLowPriorityWarnings;
+	    $scope.numberOfNewWarnings = data.numberOfNewWarnings - data.numberOfFixedWarnings;
+	    
 	    setupAnalysisChart(data);
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
-	    	$scope.more = true;
+	    	$scope.less = true;
 	    } else if((data.numberOfFixedWarnings - data.numberOfNewWarnings) < 0) {
 	    	$scope.more = true;
 	    } else {
@@ -21,6 +23,8 @@ app.controller('AnalysisController', ['$scope', 'AnalysisFactory', function ($sc
 	    }
 	    
 	    $scope.done = true;
+	    
+	    fn_computeSize();
 
 	  }, function (error) {
 		  $scope.error = true;
@@ -46,3 +50,4 @@ function setupAnalysisChart(data) {
 	var ctx = document.getElementById("analysis-chart").getContext("2d");
 	var analysisChart = new Chart(ctx).Doughnut(chartData);
 }
+
