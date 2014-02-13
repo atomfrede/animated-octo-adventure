@@ -11,7 +11,11 @@ app.controller('DryController', ['$scope', 'DryFactory', function ($scope, DryFa
 	    $scope.numberOfNormalPriorityWarnings = data.numberOfNormalPriorityWarnings;
 	    $scope.numberOfLowPriorityWarnings = data.numberOfLowPriorityWarnings;
 	    $scope.numberOfNewWarnings = data.numberOfNewWarnings - data.numberOfFixedWarnings;
-	    
+
+	    $scope.diffLow = data.numberOfNewLowPriorityWarnings;
+	    $scope.diffNormal = data.numberOfNewNormalPriorityWarnings;
+	    $scope.diffHigh = data.numberOfNewHighPriorityWarnings;
+
 	    setupDryChart(data);
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){

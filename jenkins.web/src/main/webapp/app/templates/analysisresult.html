@@ -18,15 +18,15 @@
 						ng-show="$parent.more"></i> <i class="fa fa-thumbs-up"
 						ng-show="$parent.less"></i>
 						<br/>
-						<span class="new-warnings">({{$parent.numberOfNewWarnings}})</span>
+						<span class="new-warnings" ng-hide="$parent.numberOfNewWarnings == 0">({{$parent.numberOfNewWarnings}})</span>
 				</div>
 				<div class="chart">
 					<canvas id="{{chart}}" width="auto" height="200px;"></canvas>
 				</div>
 				<div class="details">
-					<span class="label label-danger">{{$parent.numberOfHighPriorityWarnings}} ({{$parent.numberOfNewHighPriorityWarnings}})</span>
-					<span class="label label-warning">{{$parent.numberOfNormalPriorityWarnings}} </span>
-					<span class="label label-info">{{$parent.numberOfLowPriorityWarnings}} </span>
+					<span class="label label-danger">{{$parent.numberOfHighPriorityWarnings}} <span ng-hide="$parent.diffHigh == 0">({{$parent.diffHigh}})</span></span>
+					<span class="label label-warning">{{$parent.numberOfNormalPriorityWarnings}} <span ng-hide="$parent.diffNormal == 0">({{$parent.diffNormal}})</span></span>
+					<span class="label label-info">{{$parent.numberOfLowPriorityWarnings}} <span ng-hide="$parent.diffLow == 0">({{$parent.diffLow}})</span></span>
 				</div>
 			</div>
 		</div>

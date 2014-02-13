@@ -66,6 +66,11 @@
    			icon="fa-copy" 
    			ng-controller="DryController"></div>
 
+   	<div analysisresult chart="pmd-chart"
+   	        widget="PMD"
+   	        icon="fa-ambulance"
+   	        ng-controller="PmdController"></div>
+
 
 <div jacoco></div>
 
@@ -86,7 +91,7 @@ $(document).ready(function() {
 });
 
 function fn_computeSize() {
-	console.log("Compute size....");
+
 	var maxHeight = 0;
 	$.each($(".details"), function( index, value ) {
 		if($(value).height() > maxHeight) {

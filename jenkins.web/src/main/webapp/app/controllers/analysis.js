@@ -11,7 +11,11 @@ app.controller('AnalysisController', ['$scope', 'AnalysisFactory', function ($sc
 	    $scope.numberOfNormalPriorityWarnings = data.numberOfNormalPriorityWarnings;
 	    $scope.numberOfLowPriorityWarnings = data.numberOfLowPriorityWarnings;
 	    $scope.numberOfNewWarnings = data.numberOfNewWarnings - data.numberOfFixedWarnings;
-	    
+
+         $scope.diffLow = data.numberOfNewLowPriorityWarnings;
+         $scope.diffNormal = data.numberOfNewNormalPriorityWarnings;
+         $scope.diffHigh = data.numberOfNewHighPriorityWarnings;
+
 	    setupAnalysisChart(data);
 	    
 	    if((data.numberOfFixedWarnings - data.numberOfNewWarnings) > 0){
