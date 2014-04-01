@@ -19,7 +19,7 @@ apply plugin: 'idea'
 apply plugin: 'tomcat'
 
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 
 eclipse {
   wtp {

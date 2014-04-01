@@ -5,10 +5,10 @@ allprojects {
     apply plugin: 'jdepend'
     apply plugin: 'pmd'
     apply plugin: "jacoco"
-	group = 'de.avendoo.jenkins'
+	group = 'de.atomfrede.jenkins'
 	version = '0.0.1-SNAPSHOT'
 	
-	sourceCompatibility = 1.7
+	sourceCompatibility = 1.8
 		
 	test {
 		outputs.upToDateWhen {false}
