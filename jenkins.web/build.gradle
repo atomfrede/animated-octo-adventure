@@ -7,12 +7,13 @@ buildscript {
     dependencies {
         classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
         classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'
+        classpath 'org.akhikhl.gretty:gretty-plugin:+'
     }
 }
 
-apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty9.plugin'
+//apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty9.plugin'
 
-
+apply plugin: 'gretty'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
